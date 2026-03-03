@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dani Justus | Fotografia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f0eeeb;
+    --bg-dark: #1a1917;
+    --text: #2c2b29;
+    --text-muted: #6e6b66;
+    --text-light: #9a9590;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --body: 'EB Garamond', Georgia, serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(240,238,235,0.94); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(44,43,41,0.08);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 18px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; color: var(--text); }
+  .nav-right { display: flex; align-items: center; gap: 36px; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-family: var(--body); font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: var(--text-muted); transition: color 0.25s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-ig { font-size: 14px; letter-spacing: 0.1em; color: var(--text-light); text-decoration: none; transition: color 0.2s; }
+  .nav-ig:hover { color: var(--text); }
+  .lang-toggle { display: flex; align-items: center; gap: 6px; font-size: 13px; letter-spacing: 0.15em; }
+  .lang-btn { background: none; border: none; cursor: pointer; font-family: var(--body); font-size: 13px; letter-spacing: 0.15em; color: var(--text-light); padding: 4px 2px; transition: color 0.2s; }
+  .lang-btn.active { color: var(--text); border-bottom: 1px solid var(--text); }
+  .lang-sep { color: var(--text-light); font-size: 12px; }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 48px 80px; text-align: center; }
+  .hero-img-wrap { width: min(680px, 90vw); overflow: hidden; margin-bottom: 52px; }
+  .hero-img-wrap img { width: 100%; display: block; opacity: 0; transform: scale(1.04); transition: opacity 1.2s ease, transform 1.8s ease; }
+  .hero-img-wrap img.loaded { opacity: 1; transform: scale(1); }
+  .hero-eyebrow { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-light); margin-bottom: 16px; }
+  .hero-title { font-family: var(--serif); font-size: clamp(48px, 8vw, 96px); font-weight: 300; line-height: 1.05; letter-spacing: 0.04em; margin-bottom: 20px; }
+  .hero-title em { font-style: italic; }
+  .hero-sub { font-size: 15px; letter-spacing: 0.06em; color: var(--text-muted); font-style: italic; margin-bottom: 52px; }
+  .btn { display: inline-block; font-family: var(--body); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; color: var(--text); border: 1px solid rgba(44,43,41,0.35); padding: 14px 36px; transition: background 0.25s, color 0.25s, border-color 0.25s; }
+  .btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+  /* SECTIONS */
+  section { padding: 120px 48px; }
+  .section-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-light); margin-bottom: 80px; display: flex; align-items: center; gap: 20px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(44,43,41,0.15); }
+
+  /* SERIES GRID */
+  .series-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 80px; }
+  .series-item { position: relative; overflow: hidden; cursor: pointer; background: #d0cec9; }
+  .series-item::after { content: ''; display: block; padding-bottom: 125%; }
+  .series-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.25,0.1,0.25,1), opacity 0.6s; opacity: 0; }
+  .series-item img.loaded { opacity: 1; }
+  .series-item:hover img { transform: scale(1.04); }
+  .series-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,25,23,0.68) 0%, transparent 55%); z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px 28px; pointer-events: none; }
+  .series-item-title { font-family: var(--serif); font-size: 28px; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; line-height: 1.1; }
+  .series-item-meta { font-size: 12px; letter-spacing: 0.08em; color: rgba(255,255,255,0.6); margin-top: 8px; font-style: italic; }
+
+  /* SERIES DETAIL */
+  .series-detail { display: none; padding: 80px 0 0; }
+  .series-detail.active { display: block; }
+  .series-detail-inner { max-width: 1100px; margin: 0 auto; }
+  .series-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 80px; }
+  .series-intro-text h2 { font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.1; margin-bottom: 32px; }
+  .series-intro-text p { color: var(--text-muted); font-size: 16px; line-height: 1.9; margin-bottom: 16px; }
+  .series-intro-img img { width: 100%; display: block; opacity: 0; transition: opacity 0.8s; }
+  .series-intro-img img.loaded { opacity: 1; }
+  .series-works { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px 40px; }
+  .work-item-img { overflow: hidden; margin-bottom: 16px; background: #d8d6d1; }
+  .work-item-img img { width: 100%; display: block; opacity: 0; transition: opacity 0.6s, transform 0.6s; }
+  .work-item-img img.loaded { opacity: 1; }
+  .work-item:hover .work-item-img img { transform: scale(1.02); }
+  .work-caption { font-size: 12.5px; color: var(--text-light); line-height: 1.7; }
+  .work-caption strong { font-weight: 400; color: var(--text-muted); display: block; font-style: italic; font-size: 14px; margin-bottom: 4px; }
+  .series-close { display: inline-block; margin-top: 64px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); cursor: pointer; text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+  .series-close:hover { color: var(--text); border-color: var(--text); }
+
+  /* SOBRE */
+  #sobre { background: var(--bg-dark); color: #e8e5e0; }
+  #sobre .section-label { color: rgba(232,229,224,0.35); }
+  #sobre .section-label::after { background: rgba(232,229,224,0.12); }
+  .sobre-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; max-width: 1100px; margin: 0 auto; }
+  .sobre-img { overflow: hidden; position: relative; }
+  .sobre-img::before { content: ''; position: absolute; inset: -1px; border: 1px solid rgba(232,229,224,0.15); z-index: 1; pointer-events: none; }
+  .sobre-img img { width: 100%; display: block; filter: grayscale(15%); opacity: 0; transition: opacity 0.8s; }
+  .sobre-img img.loaded { opacity: 1; }
+  .sobre-text h2 { font-family: var(--serif); font-size: clamp(32px, 4vw, 52px); font-weight: 300; line-height: 1.15; margin-bottom: 40px; color: #f0eeeb; }
+  .sobre-text p { font-size: 16px; line-height: 1.95; color: rgba(232,229,224,0.72); margin-bottom: 20px; }
+  .exposicoes { margin-top: 48px; padding-top: 40px; border-top: 1px solid rgba(232,229,224,0.12); }
+  .exposicoes h3 { font-family: var(--body); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(232,229,224,0.4); margin-bottom: 24px; }
+  .exposicoes ul { list-style: none; }
+  .exposicoes li { font-size: 14px; color: rgba(232,229,224,0.6); padding: 10px 0; border-bottom: 1px solid rgba(232,229,224,0.07); display: flex; gap: 20px; }
+  .exposicoes li span:first-child { color: rgba(232,229,224,0.3); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+
+  /* CONTATO */
+  #contato { background: var(--bg); text-align: center; }
+  .contato-inner { max-width: 640px; margin: 0 auto; }
+  .contato-inner h2 { font-family: var(--serif); font-size: clamp(36px, 5vw, 72px); font-weight: 300; font-style: italic; line-height: 1.15; margin-bottom: 24px; }
+  .contato-inner p { font-size: 16px; color: var(--text-muted); margin-bottom: 48px; line-height: 1.8; }
+  .contato-links { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .contato-link-wa { display: inline-flex; align-items: center; gap: 12px; font-family: var(--body); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; color: var(--bg); background: #1a1917; padding: 16px 44px; transition: background 0.25s; }
+  .contato-link-wa:hover { background: #3a3835; }
+  .contato-link-ig { font-family: var(--body); font-size: 13px; letter-spacing: 0.12em; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid rgba(44,43,41,0.2); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+  .contato-link-ig:hover { color: var(--text); border-color: var(--text); }
+  .contato-email { font-size: 14px; color: var(--text-light); font-style: italic; }
+
+  /* FOOTER */
+  footer { background: var(--bg-dark); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
+  footer p { font-size: 12px; color: rgba(232,229,224,0.3); letter-spacing: 0.08em; }
+  footer a { font-size: 12px; color: rgba(232,229,224,0.3); text-decoration: none; letter-spacing: 0.08em; }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* LANGUAGE */
+  [data-en] { display: none; }
+  body.en [data-pt] { display: none; }
+  body.en [data-en] { display: block; }
+  body.en span[data-pt] { display: none; }
+  body.en span[data-en] { display: inline; }
+  span[data-en] { display: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links { gap: 20px; }
+    section { padding: 80px 24px; }
+    .series-grid { grid-template-columns: 1fr; }
+    .series-item::after { padding-bottom: 70%; }
+    .series-intro { grid-template-columns: 1fr; gap: 40px; }
+    .series-works { grid-template-columns: 1fr; }
+    .sobre-inner { grid-template-columns: 1fr; gap: 48px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+  }
+
+  .lightbox { display:none; position:fixed; inset:0; z-index:1000; background:rgba(10,9,8,0.97); align-items:center; justify-content:center; flex-direction:column; }
+  .lightbox.open { display:flex; }
+  .lightbox-img-wrap { max-width:90vw; max-height:82vh; display:flex; align-items:center; justify-content:center; }
+  .lightbox-img-wrap img { max-width:90vw; max-height:82vh; object-fit:contain; display:block; opacity:0; transition:opacity 0.35s; }
+  .lightbox-img-wrap img.lb-loaded { opacity:1; }
+  .lightbox-caption { margin-top:20px; text-align:center; font-family:var(--body); font-size:13px; color:rgba(232,229,224,0.5); letter-spacing:0.06em; line-height:1.7; max-width:560px; padding:0 24px; }
+  .lightbox-caption strong { color:rgba(232,229,224,0.85); font-style:italic; font-weight:400; display:block; margin-bottom:4px; font-size:15px; }
+  .lb-close { position:fixed; top:24px; right:32px; background:none; border:none; cursor:pointer; color:rgba(232,229,224,0.5); font-size:32px; line-height:1; transition:color 0.2s; z-index:1001; }
+  .lb-close:hover { color:#fff; }
+  .lb-nav { position:fixed; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:rgba(232,229,224,0.35); font-size:48px; line-height:1; transition:color 0.2s; padding:20px; z-index:1001; }
+  .lb-nav:hover { color:#fff; }
+  .lb-prev { left:8px; }
+  .lb-next { right:8px; }
+  .lb-counter { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); font-size:11px; letter-spacing:0.2em; color:rgba(232,229,224,0.3); font-family:var(--body); }
+  .work-item-img { cursor:zoom-in; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero">Dani Justus</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#series"><span data-pt>Séries</span><span data-en>Series</span></a></li>
+      <li><a href="#sobre"><span data-pt>Sobre</span><span data-en>About</span></a></li>
+      <li><a href="#contato"><span data-pt>Contato</span><span data-en>Contact</span></a></li>
+    </ul>
+    <a class="nav-ig" href="https://instagram.com/danijustus.art" target="_blank">@danijustus.art</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('pt')">PT</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-img-wrap reveal">
+    <img src="01-home.jpg" alt="Morri de Saudade" onload="this.classList.add('loaded')">
+  </div>
+  <p class="hero-eyebrow reveal">
+    <span data-pt>Rio de Janeiro · Fotografia Analógica Fine Art</span>
+    <span data-en>Rio de Janeiro · Fine Art Analog Photography</span>
+  </p>
+  <h1 class="hero-title reveal">Dani <em>Justus</em></h1>
+  <p class="hero-sub reveal">
+    <span data-pt>Fotografia guiada pela experimentação e pelo tempo</span>
+    <span data-en>Photography guided by experimentation and time</span>
+  </p>
+  <a href="#series" class="btn reveal">
+    <span data-pt>Ver séries</span><span data-en>View series</span>
+  </a>
+</section>
+
+<!-- SÉRIES -->
+<section id="series">
+  <p class="section-label"><span data-pt>Séries</span><span data-en>Series</span></p>
+
+  <div class="series-grid">
+    <div class="series-item" onclick="openSeries('mutante')">
+      <img src="mut-04.jpg" alt="Mutante" onload="this.classList.add('loaded')">
+      <div class="series-item-overlay">
+        <div class="series-item-title"><span data-pt>Mutante</span><span data-en>Mutant</span></div>
+        <div class="series-item-meta"><span data-pt>Analógico · Rio de Janeiro & Bahia</span><span data-en>Analog · Rio de Janeiro & Bahia</span></div>
+      </div>
+    </div>
+    <div class="series-item" onclick="openSeries('sonorio')">
+      <img src="snr-06.jpg" alt="Só no Rio" onload="this.classList.add('loaded')">
+      <div class="series-item-overlay">
+        <div class="series-item-title"><span data-pt>Só no Rio</span><span data-en>Only in Rio</span></div>
+        <div class="series-item-meta"><span data-pt>Analógico · Ipanema & Leblon</span><span data-en>Analog · Ipanema & Leblon</span></div>
+      </div>
+    </div>
+    <div class="series-item" onclick="openSeries('cartasoamar')">
+      <img src="cam-05.jpg" alt="Cartas ao Mar" onload="this.classList.add('loaded')">
+      <div class="series-item-overlay">
+        <div class="series-item-title"><span data-pt>Cartas ao Mar</span><span data-en>Letters to the Sea</span></div>
+        <div class="series-item-meta"><span data-pt>Analógico · Rio de Janeiro</span><span data-en>Analog · Rio de Janeiro</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MUTANTE DETAIL -->
+  <div class="series-detail" id="detail-mutante">
+    <div class="series-detail-inner">
+      <div class="series-intro">
+        <div class="series-intro-text">
+          <h2><span data-pt>Mutante</span><span data-en>Mutant</span></h2>
+          <div data-pt>
+            <p>Todas as imagens que compõem a série <em>Mutante</em> foram produzidas com câmeras analógicas antigas e, muitas delas, com rolos de filme vencidos, que ficaram esquecidos por cerca de 15 anos.</p>
+            <p>A revelação desses negativos é feita de forma caseira, pela própria fotógrafa, lhe possibilitando experimentar, de ponta a ponta, a construção de suas imagens fotográficas.</p>
+            <p>O trabalho é uma celebração de um processo que resiste ao tempo: o processo fotográfico. Todas as falhas e alterações derivadas da idade de todo o material trazem para o trabalho uma dimensão de vida. Tudo que aqui está é real, palpável, e, como todos nós, <strong>MUTANTE</strong>.</p>
+          </div>
+          <div data-en>
+            <p>All images in the <em>Mutant</em> series were produced with vintage analog cameras and, in many cases, with expired film rolls that had been forgotten for around 15 years.</p>
+            <p>The negatives are developed at home by the photographer herself, allowing her to experiment with the entire construction of her photographic images from end to end.</p>
+            <p>The work is a celebration of a process that resists time: the photographic process. All the failures and alterations derived from the age of the materials bring a dimension of life to the work. Everything here is real, tangible, and, like all of us, <strong>MUTANT</strong>.</p>
+          </div>
+        </div>
+        <div class="series-intro-img">
+          <img src="mut-08.jpg" alt="Balada Baiana" onload="this.classList.add('loaded')">
+        </div>
+      </div>
+      <div class="series-works">
+        <div class="work-item"><div class="work-item-img"><img src="mut-01.jpg" onload="this.classList.add('loaded')" alt="Onda"></div>
+          <div class="work-caption"><strong>Onda</strong><span data-pt>Dezembro/2023 · Leblon, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 50 × 50 cm</span><span data-en>December/2023 · Leblon, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 50 × 50 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="mut-02.jpg" onload="this.classList.add('loaded')" alt="Dois Irmãos"></div>
+          <div class="work-caption"><strong>Dois Irmãos</strong><span data-pt>Dezembro/2023 · Leblon, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 50 × 50 cm</span><span data-en>December/2023 · Leblon, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 50 × 50 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="mut-03.jpg" onload="this.classList.add('loaded')" alt="Roda Mundo"></div>
+          <div class="work-caption"><strong>Roda Mundo</strong><span data-pt>Dezembro/2023 · Ipanema, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 50 × 37,5 cm</span><span data-en>December/2023 · Ipanema, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 50 × 37.5 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="mut-04.jpg" onload="this.classList.add('loaded')" alt="Mundo Invertido"></div>
+          <div class="work-caption"><strong>Mundo Invertido</strong><span data-pt>Outubro/2024 · Leblon, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 60 × 45 cm</span><span data-en>October/2024 · Leblon, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 60 × 45 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="mut-05.jpg" onload="this.classList.add('loaded')" alt="Caixote"></div>
+          <div class="work-caption"><strong>Caixote</strong><span data-pt>Dezembro/2023 · Leblon, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 50 × 50 cm</span><span data-en>December/2023 · Leblon, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 50 × 50 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="mut-06.jpg" onload="this.classList.add('loaded')" alt="Homenagem a Debret"></div>
+          <div class="work-caption"><strong>Homenagem a Debret</strong><span data-pt>Abril/2024 · Jardim Botânico, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 60 × 45 cm</span><span data-en>April/2024 · Jardim Botânico, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 60 × 45 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="mut-07.jpg" onload="this.classList.add('loaded')" alt="Pindorama"></div>
+          <div class="work-caption"><strong>Pindorama</strong><span data-pt>Setembro/2025 · Jardim Botânico, Rio de Janeiro<br>Fotografia pinhole impressa em papel de algodão fine art · 50 × 50 cm</span><span data-en>September/2025 · Jardim Botânico, Rio de Janeiro<br>Pinhole photograph printed on fine art cotton paper · 50 × 50 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="mut-08.jpg" onload="this.classList.add('loaded')" alt="Balada Baiana"></div>
+          <div class="work-caption"><strong>Balada Baiana</strong><span data-pt>Janeiro/2025 · Praia de Santo Antônio, Bahia<br>Fotografia analógica impressa em papel de algodão fine art · 80 × 60 cm</span><span data-en>January/2025 · Praia de Santo Antônio, Bahia<br>Analog photograph printed on fine art cotton paper · 80 × 60 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img" style="display:grid;grid-template-columns:1fr 1fr;gap:4px;"><img src="mut-09a.jpg" onload="this.classList.add('loaded')" alt="Domingo 1"><img src="mut-09b.jpg" onload="this.classList.add('loaded')" alt="Domingo 2"></div>
+          <div class="work-caption"><strong>Díptico — Domingo</strong><span data-pt>Dezembro/2023 · Ipanema, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 50 × 31,6 cm (cada)</span><span data-en>December/2023 · Ipanema, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 50 × 31.6 cm (each)</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="mut-10.jpg" onload="this.classList.add('loaded')" alt="Testemunhas Cariocas"></div>
+          <div class="work-caption"><strong>Testemunhas Cariocas</strong><span data-pt>Outubro/2024 · Parque Lage, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 100 × 64 cm</span><span data-en>October/2024 · Parque Lage, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 100 × 64 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="mut-11.jpg" onload="this.classList.add('loaded')" alt="O que fica na memória?"></div>
+          <div class="work-caption"><strong>O que fica na memória?</strong><span data-pt>Outubro/2025 · Jardim Botânico, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 50 × 50 cm</span><span data-en>October/2025 · Jardim Botânico, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 50 × 50 cm</span></div></div>
+      </div>
+      <a class="series-close" onclick="closeSeries()"><span data-pt>← Voltar às séries</span><span data-en>← Back to series</span></a>
+    </div>
+  </div>
+
+  <!-- SÓ NO RIO DETAIL -->
+  <div class="series-detail" id="detail-sonorio">
+    <div class="series-detail-inner">
+      <div class="series-intro">
+        <div class="series-intro-text">
+          <h2><span data-pt>Só no Rio</span><span data-en>Only in Rio</span></h2>
+          <div data-pt>
+            <p><em>Só no Rio</em> é uma série que investiga o que significa ser carioca a partir da ocupação do espaço público. Entre a praia e o verão, as imagens falam de convivência, corpo, improviso e celebração em espaços absolutamente democráticos.</p>
+            <p>As fotografias foram realizadas com câmeras analógicas antigas, sem pré-visualização e reveladas de forma caseira. O processo lento e impreciso faz parte da construção das imagens, incorporando o erro, o acaso e a passagem do tempo como linguagem.</p>
+            <p>Mais do que representar o Rio de Janeiro, a série busca registrar um modo de estar: coletivo, intenso e efêmero. Um Rio vivido, onde paisagem e corpo se confundem e o tempo parece dobrar-se sobre si mesmo.</p>
+          </div>
+          <div data-en>
+            <p><em>Só no Rio</em> is a series that investigates what it means to be carioca through the occupation of public space. Between the beach and summer, the images speak of coexistence, body, improvisation, and celebration in absolutely democratic spaces.</p>
+            <p>The photographs were made with vintage analog cameras, without pre-visualization, and developed at home. The slow, imprecise process is part of the construction of the images, incorporating error, chance, and the passage of time as language.</p>
+            <p>More than representing Rio de Janeiro, the series seeks to capture a way of being: collective, intense, and ephemeral. A lived Rio, where landscape and body blur together and time seems to fold upon itself.</p>
+          </div>
+        </div>
+        <div class="series-intro-img">
+          <img src="snr-09.jpg" alt="Ipanema 1970" onload="this.classList.add('loaded')">
+        </div>
+      </div>
+      <div class="series-works">
+        <div class="work-item"><div class="work-item-img"><img src="snr-01.jpg" onload="this.classList.add('loaded')" alt="Sem título"></div>
+          <div class="work-caption"><strong>Sem título</strong><span data-pt>Novembro/2025 · Ipanema, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 60 × 45 cm</span><span data-en>November/2025 · Ipanema, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 60 × 45 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="snr-02.jpg" onload="this.classList.add('loaded')" alt="Sem título"></div>
+          <div class="work-caption"><strong>Sem título</strong><span data-pt>Novembro/2025 · Ipanema, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 60 × 45 cm</span><span data-en>November/2025 · Ipanema, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 60 × 45 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="snr-03.jpg" onload="this.classList.add('loaded')" alt="Ipanema"></div>
+          <div class="work-caption"><strong>Ipanema</strong><span data-pt>Novembro/2025 · Ipanema, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 110 × 80 cm</span><span data-en>November/2025 · Ipanema, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 110 × 80 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="snr-04.jpg" onload="this.classList.add('loaded')" alt="A melhor praia do ano"></div>
+          <div class="work-caption"><strong>A melhor praia do ano</strong><span data-pt>Dezembro/2025 · Arpoador, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 70 × 70 cm</span><span data-en>December/2025 · Arpoador, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 70 × 70 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="snr-05.jpg" onload="this.classList.add('loaded')" alt="Olhos nos olhos"></div>
+          <div class="work-caption"><strong>Olhos nos olhos</strong><span data-pt>Novembro/2025 · Ipanema, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 60 × 45 cm</span><span data-en>November/2025 · Ipanema, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 60 × 45 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="snr-06.jpg" onload="this.classList.add('loaded')" alt="Sem título"></div>
+          <div class="work-caption"><strong>Sem título</strong><span data-pt>Fevereiro/2026 · Ipanema, Rio de Janeiro<br>Fotografia analógica com intervenção química natural no negativo (água do mar) impressa em papel de algodão fine art · 75 × 50 cm</span><span data-en>February/2026 · Ipanema, Rio de Janeiro<br>Analog photograph with natural chemical intervention on the negative (seawater) printed on fine art cotton paper · 75 × 50 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="snr-07.jpg" onload="this.classList.add('loaded')" alt="Sem título"></div>
+          <div class="work-caption"><strong>Sem título</strong><span data-pt>Fevereiro/2026 · Ipanema, Rio de Janeiro<br>Fotografia analógica com intervenção química natural no negativo (água do mar) impressa em papel de algodão fine art · 75 × 50 cm</span><span data-en>February/2026 · Ipanema, Rio de Janeiro<br>Analog photograph with natural chemical intervention on the negative (seawater) printed on fine art cotton paper · 75 × 50 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="snr-08.jpg" onload="this.classList.add('loaded')" alt="Ao mar o que é do mar"></div>
+          <div class="work-caption"><strong>Ao mar o que é do mar</strong><span data-pt>Fevereiro/2026 · Ipanema, Rio de Janeiro<br>Fotografia analógica com intervenção química natural no negativo (água do mar) impressa em papel de algodão fine art · 75 × 50 cm</span><span data-en>February/2026 · Ipanema, Rio de Janeiro<br>Analog photograph with natural chemical intervention on the negative (seawater) printed on fine art cotton paper · 75 × 50 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="snr-09.jpg" onload="this.classList.add('loaded')" alt="Ipanema 1970"></div>
+          <div class="work-caption"><strong>Ipanema, 1970</strong><span data-pt>Fevereiro/2026 · Ipanema, Rio de Janeiro<br>Fotografia analógica com intervenção química natural no negativo (água do mar) impressa em papel de algodão fine art · 75 × 50 cm</span><span data-en>February/2026 · Ipanema, Rio de Janeiro<br>Analog photograph with natural chemical intervention on the negative (seawater) printed on fine art cotton paper · 75 × 50 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="snr-10.jpg" onload="this.classList.add('loaded')" alt="Sem título"></div>
+          <div class="work-caption"><strong>Sem título</strong><span data-pt>Fevereiro/2026 · Ipanema, Rio de Janeiro<br>Fotografia analógica com intervenção química natural no negativo (água do mar) impressa em papel de algodão fine art · 75 × 50 cm</span><span data-en>February/2026 · Ipanema, Rio de Janeiro<br>Analog photograph with natural chemical intervention on the negative (seawater) printed on fine art cotton paper · 75 × 50 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="snr-11.jpg" onload="this.classList.add('loaded')" alt="Sem título"></div>
+          <div class="work-caption"><strong>Sem título</strong><span data-pt>Fevereiro/2026 · Ipanema, Rio de Janeiro<br>Fotografia analógica com intervenção química natural no negativo (água do mar) impressa em papel de algodão fine art · 75 × 50 cm</span><span data-en>February/2026 · Ipanema, Rio de Janeiro<br>Analog photograph with natural chemical intervention on the negative (seawater) printed on fine art cotton paper · 75 × 50 cm</span></div></div>
+      </div>
+      <a class="series-close" onclick="closeSeries()"><span data-pt>← Voltar às séries</span><span data-en>← Back to series</span></a>
+    </div>
+  </div>
+
+  <!-- CARTAS AO MAR DETAIL -->
+  <div class="series-detail" id="detail-cartasoamar">
+    <div class="series-detail-inner">
+      <div class="series-intro">
+        <div class="series-intro-text">
+          <h2><span data-pt>Cartas ao Mar</span><span data-en>Letters to the Sea</span></h2>
+          <div data-pt>
+            <p><em>"Morri de amor, morri de saudade, mas não morri de vontade."</em></p>
+            <p><strong>Cartas ao Mar</strong> nasce dessa urgência de se manifestar. De um desejo persistente de expressão que encontra na fotografia um lugar possível, que vai além do registro e encontra a invenção.</p>
+            <p>Aqui a artista interfere no processo analógico: escreve dentro da câmera, sobrepõe tempos, criando múltiplas exposições que se costuram como manifestos.</p>
+            <p>A série propõe a fotografia como linguagem íntima e experimental. O mar aparece como destino simbólico dessas cartas — um lugar de entrega, escuta e suspensão.</p>
+          </div>
+          <div data-en>
+            <p><em>"I died of love, I died of longing, but I did not die of desire."</em></p>
+            <p><strong>Cartas ao Mar</strong> (Letters to the Sea) is born from this urgency to express oneself. From a persistent desire for expression that finds in photography a possible place — one that goes beyond documentation and finds invention.</p>
+            <p>Here the artist intervenes in the analog process: she writes inside the camera, overlaps time, creating multiple exposures that stitch together like manifestos.</p>
+            <p>The series proposes photography as an intimate and experimental language. The sea appears as the symbolic destination of these letters — a place of surrender, listening, and suspension.</p>
+          </div>
+        </div>
+        <div class="series-intro-img">
+          <img src="cam-01.jpg" alt="Como faz para voltar no tempo?" onload="this.classList.add('loaded')">
+        </div>
+      </div>
+      <div class="series-works">
+        <div class="work-item"><div class="work-item-img"><img src="cam-01.jpg" onload="this.classList.add('loaded')" alt="Como faz para voltar no tempo?"></div>
+          <div class="work-caption"><strong>Como faz para voltar no tempo?</strong><span data-pt>Março/2025 · Lagoa, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 60 × 45 cm</span><span data-en>March/2025 · Lagoa, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 60 × 45 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="cam-02.jpg" onload="this.classList.add('loaded')" alt="Morri de Amor"></div>
+          <div class="work-caption"><strong>Morri de Amor</strong><span data-pt>Setembro/2025 · Ipanema, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 45 × 60 cm</span><span data-en>September/2025 · Ipanema, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 45 × 60 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="cam-03.jpg" onload="this.classList.add('loaded')" alt="Morri de Saudade"></div>
+          <div class="work-caption"><strong>Morri de Saudade</strong><span data-pt>Novembro/2025 · Leblon, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 45 × 60 cm</span><span data-en>November/2025 · Leblon, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 45 × 60 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="cam-04.jpg" onload="this.classList.add('loaded')" alt="Não Morri de Vontade"></div>
+          <div class="work-caption"><strong>Não Morri de Vontade</strong><span data-pt>Novembro/2025 · Arpoador, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 45 × 60 cm</span><span data-en>November/2025 · Arpoador, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 45 × 60 cm</span></div></div>
+        <div class="work-item"><div class="work-item-img"><img src="cam-05.jpg" onload="this.classList.add('loaded')" alt="Eu fiz essa foto pra você"></div>
+          <div class="work-caption"><strong>Eu Fiz Essa Foto Pra Você</strong><span data-pt>Abril/2025 · Arpoador, Rio de Janeiro<br>Fotografia analógica impressa em papel de algodão fine art · 60 × 45 cm</span><span data-en>April/2025 · Arpoador, Rio de Janeiro<br>Analog photograph printed on fine art cotton paper · 60 × 45 cm</span></div></div>
+      </div>
+      <a class="series-close" onclick="closeSeries()"><span data-pt>← Voltar às séries</span><span data-en>← Back to series</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <p class="section-label"><span data-pt>Sobre</span><span data-en>About</span></p>
+  <div class="sobre-inner">
+    <div class="sobre-img reveal">
+      <img src="dani-justus.JPEG" alt="Daniela Justus" onload="this.classList.add('loaded')">
+    </div>
+    <div class="sobre-text reveal">
+      <h2>Daniela<br><em>Justus</em></h2>
+      <div data-pt>
+        <p>Fotógrafa brasileira, baseada no Rio de Janeiro, com mais de duas décadas de atuação profissional.</p>
+        <p>Sua pesquisa mergulha nos processos analógicos e na investigação da interrupção do tempo. Seu trabalho nasce do gesto de fotografar sem pré-visualização, aceitando o destino da imagem que só se revela a posteriori, quando o tempo da interferência já passou.</p>
+        <p>Utilizando câmeras antigas, filmes vencidos, múltiplas exposições e processos experimentais, a artista incorpora o erro, o acaso e as instabilidades do material como partes indissociáveis da obra.</p>
+        <p>Na produção atual de Daniela, fotografar é o ato de desacelerar o tempo e aceitar, com todas as suas nuances e ruídos, aquilo que permanece.</p>
+      </div>
+      <div data-en>
+        <p>Brazilian photographer based in Rio de Janeiro, with over two decades of professional practice.</p>
+        <p>Her research delves into analog processes and the investigation of time's interruption. Her work is born from the gesture of photographing without pre-visualization, accepting the fate of the image that only reveals itself afterwards, when the moment of interference has already passed.</p>
+        <p>Using vintage cameras, expired films, multiple exposures, and experimental processes, the artist incorporates error, chance, and material instabilities as inseparable parts of the work.</p>
+        <p>In Daniela's current practice, to photograph is the act of slowing down time and accepting — with all its nuances and noise — what remains.</p>
+      </div>
+      <div class="exposicoes">
+        <h3><span data-pt>Exposições Coletivas</span><span data-en>Group Exhibitions</span></h3>
+        <ul>
+          <li><span>2025</span><span>Encontros de Outono, Casa70/Instituto Brando — Rio de Janeiro</span></li>
+          <li><span>2007</span><span>Prêmio Hercule Florence, Casa França-Brasil — Rio de Janeiro</span></li>
+          <li><span>2006</span><span>Os Trabalhos, Ateliê da Imagem — Rio de Janeiro</span></li>
+          <li><span>2005</span><span>Terceira Margem, Ateliê da Imagem — Rio de Janeiro</span></li>
+          <li><span>2005</span><span>Desclick, Ateliê da Imagem — Rio de Janeiro</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <p class="section-label"><span data-pt>Contato</span><span data-en>Contact</span></p>
+  <div class="contato-inner reveal">
+    <h2><span data-pt>Vamos <em>conversar</em></span><span data-en>Let's <em>talk</em></span></h2>
+    <p>
+      <span data-pt>Para aquisição de obras, encomendas, exposições ou qualquer outra questão, entre em contato pelo WhatsApp ou Instagram.</span>
+      <span data-en>For acquisitions, commissions, exhibitions, or any other inquiry, reach out via WhatsApp or Instagram.</span>
+    </p>
+    <div class="contato-links">
+      <a class="contato-link-wa" href="https://wa.me/5521998733496" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a class="contato-link-ig" href="https://instagram.com/danijustus.art" target="_blank">@danijustus.art</a>
+      <span class="contato-email">daniela.justus@gmail.com</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Dani Justus · <span data-pt>Fotografia Fine Art</span><span data-en>Fine Art Photography</span> · Rio de Janeiro</p>
+  <a href="#hero">↑ <span data-pt>Topo</span><span data-en>Top</span></a>
+</footer>
+
+<script>
+  // Language toggle
+  function setLang(lang) {
+    document.body.classList.toggle('en', lang === 'en');
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+  }
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Series open/close
+  function openSeries(id) {
+    document.querySelectorAll('.series-detail').forEach(d => d.classList.remove('active'));
+    const detail = document.getElementById('detail-' + id);
+    if (detail) {
+      detail.classList.add('active');
+      setTimeout(() => detail.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  }
+  function closeSeries() {
+    document.querySelectorAll('.series-detail').forEach(d => d.classList.remove('active'));
+    document.getElementById('series').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  var lbImgs=[]; var lbIdx=0;
+  function lbOpen(el){
+    var detail=el.closest('.series-detail')||el.closest('section');
+    lbImgs=Array.from(detail.querySelectorAll('.work-item-img img')).filter(function(i){return i.complete&&i.naturalWidth>0;});
+    lbIdx=lbImgs.indexOf(el); if(lbIdx<0)lbIdx=0;
+    lbShow(); document.getElementById('lightbox').classList.add('open'); document.body.style.overflow='hidden';
+  }
+  function lbShow(){
+    var img=lbImgs[lbIdx];
+    var li=document.getElementById('lb-img'); li.classList.remove('lb-loaded'); li.src=img.src; li.alt=img.alt||'';
+    var cap=img.closest('.work-item'); var title=''; var info='';
+    if(cap){ var t=cap.querySelector('strong'); if(t)title=t.textContent; var isEN=document.body.classList.contains('en'); var sp=cap.querySelector(isEN?'[data-en]':'[data-pt]'); if(sp)info=sp.textContent.replace(/\s+/g,' ').trim(); }
+    document.getElementById('lb-cap').innerHTML=(title?'<strong>'+title+'</strong>':'')+info;
+    document.getElementById('lb-count').textContent=(lbIdx+1)+' / '+lbImgs.length;
+  }
+  function lbClose(){ document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
+  function lbNav(d){ lbIdx=(lbIdx+d+lbImgs.length)%lbImgs.length; lbShow(); }
+  function lbClickOut(e){ if(e.target===document.getElementById('lightbox'))lbClose(); }
+  document.addEventListener('keydown',function(e){ if(!document.getElementById('lightbox').classList.contains('open'))return; if(e.key==='Escape')lbClose(); if(e.key==='ArrowRight')lbNav(1); if(e.key==='ArrowLeft')lbNav(-1); });
+  document.querySelectorAll('.work-item-img img').forEach(function(img){ img.style.cursor='zoom-in'; img.addEventListener('click',function(){lbOpen(img);}); });
+</script>
+
+<div class="lightbox" id="lightbox" onclick="lbClickOut(event)">
+  <button class="lb-close" onclick="lbClose()">&times;</button>
+  <button class="lb-nav lb-prev" onclick="lbNav(-1)">&#x2039;</button>
+  <div class="lightbox-img-wrap"><img id="lb-img" src="" alt="" onload="this.classList.add('lb-loaded')"></div>
+  <div class="lightbox-caption" id="lb-cap"></div>
+  <button class="lb-nav lb-next" onclick="lbNav(1)">&#x203a;</button>
+  <div class="lb-counter" id="lb-count"></div>
+</div>
+</body>
+</html>
