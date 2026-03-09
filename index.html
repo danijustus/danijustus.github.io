@@ -25,28 +25,14 @@ nav{display:flex;align-items:center;gap:36px}
 .lang-btn.active{color:var(--text)}
 .lang-sep{font-size:10px;color:rgba(28,27,25,0.25)}
 
-/* SLIDESHOW */
-#slideshow{position:fixed;top:72px;left:0;right:0;bottom:0;z-index:0;background:#000}
-#slideshow.hidden{display:none}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;cursor:pointer}
-.slide.active{opacity:1}
-.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.9s}
-.slide img.loaded{opacity:1}
-.slide::after{content:'';position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(to top,rgba(0,0,0,0.75),transparent);pointer-events:none}
-.slide-info{position:absolute;bottom:48px;left:52px;z-index:1;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity 0.7s 0.4s,transform 0.7s 0.4s}
-.slide.active .slide-info{opacity:1;transform:translateY(0)}
-.slide-series{font-family:var(--sans);font-size:11px;font-weight:300;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:8px;display:block}
-.slide-title{font-family:var(--serif);font-size:clamp(36px,4.5vw,60px);font-weight:300;color:#fff;font-style:italic;line-height:1;text-shadow:0 2px 20px rgba(0,0,0,0.3)}
-
-/* slide arrows + counter */
-.slide-arrow{position:fixed;top:50%;transform:translateY(-50%);z-index:50;background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.25);font-size:36px;padding:28px 24px;line-height:1;transition:color 0.2s}
-.slide-arrow:hover{color:rgba(255,255,255,0.8)}
-#arrow-prev{left:0}#arrow-next{right:0}
-#slide-ui{position:fixed;bottom:48px;right:52px;z-index:50;display:flex;align-items:center;gap:20px;pointer-events:none}
-#slide-counter{font-family:var(--sans);font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.3)}
-#slide-hint{font-family:var(--sans);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.3);animation:pulse 3s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:0.3}50%{opacity:0.7}}
-#progress-bar{position:fixed;bottom:0;left:0;height:2px;background:rgba(255,255,255,0.35);z-index:50;width:0%}
+/* HOME PHOTO — static, full screen */
+#home-photo{position:fixed;top:72px;left:0;right:0;bottom:0;z-index:0;background:#000;cursor:pointer}
+#home-photo.hidden{display:none}
+#home-photo img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity 1s}
+#home-photo img.loaded{opacity:1}
+#home-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);pointer-events:none}
+#home-hint{position:fixed;bottom:48px;right:52px;z-index:50;font-family:var(--sans);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);animation:pulse 3s ease-in-out infinite;pointer-events:none}
+@keyframes pulse{0%,100%{opacity:0.35}50%{opacity:0.75}}
 
 /* PAGE */
 #page{display:none;min-height:100vh;background:var(--bg);padding-top:92px}
@@ -58,7 +44,6 @@ nav{display:flex;align-items:center;gap:36px}
 .series-card{cursor:pointer;position:relative;overflow:hidden;background:#ccc8c2}
 .series-card-ratio{padding-bottom:128%}
 .series-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.8s}
-
 .series-card:hover img{transform:scale(1.04)}
 .series-card-info{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.65) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;pointer-events:none}
 .series-card-name{font-family:var(--serif);font-size:28px;font-weight:300;letter-spacing:0.06em;text-transform:uppercase;color:#fff;line-height:1}
@@ -73,7 +58,6 @@ nav{display:flex;align-items:center;gap:36px}
 .series-works{display:grid;grid-template-columns:1fr 1fr;gap:72px 56px;padding:0 80px}
 .work-img{overflow:hidden;background:#d4d2ce;margin-bottom:18px;cursor:zoom-in}
 .work-img img{width:100%;display:block;transition:transform 0.8s}
-
 .work-item:hover .work-img img{transform:scale(1.02)}
 .work-caption{font-size:13px;color:var(--muted);line-height:1.75}
 .work-caption strong{font-family:var(--serif);font-style:italic;font-weight:400;font-size:16px;color:var(--text);display:block;margin-bottom:3px}
@@ -82,8 +66,7 @@ nav{display:flex;align-items:center;gap:36px}
 
 /* SOBRE */
 .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:start;max-width:1300px}
-.sobre-img{position:static}
-.sobre-img img{width:100%;display:block;}
+.sobre-img img{width:100%;display:block}
 .sobre-text h2{font-family:var(--serif);font-size:clamp(40px,4.5vw,60px);font-weight:300;line-height:1.05;margin-bottom:44px}
 .sobre-text p{font-size:16px;line-height:2.1;color:var(--muted);margin-bottom:22px}
 .expo{margin-top:64px;padding-top:48px;border-top:1px solid rgba(28,27,25,0.09)}
@@ -96,12 +79,14 @@ nav{display:flex;align-items:center;gap:36px}
 .contato-body{max-width:600px}
 .contato-body h2{font-family:var(--serif);font-size:clamp(48px,6vw,88px);font-weight:300;font-style:italic;line-height:1;margin-bottom:40px}
 .contato-body p{font-size:16px;color:var(--muted);line-height:2;margin-bottom:60px}
-.contato-links{display:flex;flex-direction:column;gap:20px}
-.cta-wa{display:inline-flex;align-items:center;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--bg);background:var(--text);padding:16px 44px;width:fit-content;transition:opacity 0.25s}
+.contato-links{display:flex;flex-direction:column;gap:24px}
+.contato-ig{font-family:var(--serif);font-style:italic;font-size:clamp(32px,4vw,56px);color:var(--text);border-bottom:1px solid rgba(28,27,25,0.18);padding-bottom:6px;letter-spacing:0.01em;text-decoration:none;display:inline-block}
+.contato-ig:hover{opacity:0.6}
+.contato-meta{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.contato-meta a,.contato-meta span{font-size:15px;color:var(--muted);text-decoration:none;font-family:var(--sans);letter-spacing:0.04em}
+.contato-meta a:hover{color:var(--text)}
+.cta-wa{display:inline-flex;align-items:center;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--bg);background:var(--text);padding:16px 44px;width:fit-content;transition:opacity 0.25s;margin-top:8px}
 .cta-wa:hover{opacity:0.7}
-.link-ig{font-size:14px;color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(28,27,25,0.18);padding-bottom:2px;width:fit-content;transition:color 0.2s}
-.link-ig:hover{color:var(--text)}
-.email-txt{font-size:14px;color:var(--muted);font-family:var(--serif);font-style:italic}
 
 /* FOOTER */
 footer{padding:28px 80px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(28,27,25,0.08);margin-top:80px}
@@ -139,20 +124,18 @@ span[data-en]{display:none}
   header{padding:0 24px}
   nav{gap:18px}
   .nav-btn{font-size:10px}
-  .slide-info{left:28px;bottom:40px}
-  #slide-ui{right:28px;bottom:40px}
   .series-header{grid-template-columns:1fr;gap:32px;padding:0 24px 56px}
   .series-grid{grid-template-columns:1fr}
   .series-works{grid-template-columns:1fr;gap:48px;padding:0 24px}
   .series-back{margin:48px 24px 0}
   .sobre-grid{grid-template-columns:1fr;gap:40px}
-  .sobre-img{position:static}
   #page > div > div{padding-left:24px!important;padding-right:24px!important}
   footer{padding:22px 24px}
   #lb-img-wrap{padding:72px 16px 88px}
   #lb-cap{left:20px;right:20px}
   #lb-series{left:24px}
   #lb-count{right:24px}
+  #home-hint{right:28px;bottom:40px}
 }
 </style>
 </head>
@@ -172,41 +155,11 @@ span[data-en]{display:none}
   </nav>
 </header>
 
-<!-- SLIDESHOW -->
-<div id="slideshow">
-  <div class="slide active" data-series="sonorio" data-idx="5">
-    <img src="snr-06.jpg" alt="">
-  </div>
-  </div>
-  <div class="slide" data-series="sonorio" data-idx="6">
-    <img src="snr-07.jpg" alt="">
-  </div>
-  </div>
-  <div class="slide" data-series="sonorio" data-idx="7">
-    <img src="snr-08.jpg" alt="">
-  </div>
-  </div>
-  <div class="slide" data-series="sonorio" data-idx="8">
-    <img src="snr-09.jpg" alt="">
-  </div>
-  </div>
-  <div class="slide" data-series="sonorio" data-idx="9">
-    <img src="snr-10.jpg" alt="">
-  </div>
-  </div>
-  <div class="slide" data-series="sonorio" data-idx="10">
-    <img src="snr-11.jpg" alt="">
-  </div>
-  </div>
+<!-- HOME — foto estática -->
+<div id="home-photo">
+  <img id="home-img" src="01-home.jpg" alt="Dani Justus">
 </div>
-
-<button class="slide-arrow" id="arrow-prev">&#8249;</button>
-<button class="slide-arrow" id="arrow-next">&#8250;</button>
-<div id="slide-ui">
-  <span id="slide-hint"><span data-pt>clique para ver a série</span><span data-en>click to see series</span></span>
-  <span id="slide-counter">1 / 6</span>
-</div>
-<div id="progress-bar"></div>
+<span id="home-hint"><span data-pt>clique para ver as séries</span><span data-en>click to see series</span></span>
 
 <!-- PAGES -->
 <div id="page">
@@ -346,7 +299,7 @@ span[data-en]{display:none}
     <div style="padding:0 80px 140px">
       <span class="section-eyebrow"><span data-pt>Sobre</span><span data-en>About</span></span>
       <div class="sobre-grid">
-        <div class="sobre-img"><img src="dani-justus.jpg" alt="Daniela Justus" style="width:100%;display:block;"></div>
+        <div class="sobre-img"><img src="dani-justus.jpg" alt="Daniela Justus"></div>
         <div class="sobre-text">
           <h2>Daniela<br><em>Justus</em></h2>
           <div data-pt>
@@ -362,8 +315,9 @@ span[data-en]{display:none}
             <p>In Daniela's current practice, to photograph is the act of slowing down time and accepting — with all its nuances and noise — what remains.</p>
           </div>
           <div class="expo">
-            <h3><span data-pt>Exposições Coletivas</span><span data-en>Group Exhibitions</span></h3>
+            <h3><span data-pt>Exposições</span><span data-en>Exhibitions</span></h3>
             <ul>
+              <li><span>2026</span><span><span data-pt>Eu fiz essa foto pra você — solo, Restaurante Brota, Botafogo</span><span data-en>Eu fiz essa foto pra você — solo, Restaurante Brota, Botafogo</span></span></li>
               <li><span>2025</span><span>Encontros de Outono, Casa70/Instituto Brando — Rio de Janeiro</span></li>
               <li><span>2007</span><span>Prêmio Hercule Florence, Casa França-Brasil — Rio de Janeiro</span></li>
               <li><span>2006</span><span>Os Trabalhos, Ateliê da Imagem — Rio de Janeiro</span></li>
@@ -385,12 +339,12 @@ span[data-en]{display:none}
         <h2><span data-pt>Vamos<br><em>conversar</em></span><span data-en>Let's<br><em>talk</em></span></h2>
         <p><span data-pt>Para aquisição de obras, encomendas, exposições ou qualquer outra questão, entre em contato.</span><span data-en>For acquisitions, commissions, exhibitions or any other inquiry, get in touch.</span></p>
         <div class="contato-links">
-          <a class="link-ig" href="https://www.instagram.com/danijustus.art/" target="_blank" rel="noopener noreferrer" style="font-family:var(--serif);font-style:italic;font-size:clamp(32px,4vw,56px);color:var(--text);border-bottom:1px solid rgba(28,27,25,0.18);padding-bottom:6px;letter-spacing:0.01em;text-decoration:none;display:inline-block;cursor:pointer">@danijustus.art</a>
-          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
-            <a href="mailto:daniela.justus@gmail.com" style="font-size:15px;color:var(--muted);text-decoration:none;font-family:var(--sans);letter-spacing:0.04em">daniela.justus@gmail.com</a>
-            <span style="font-size:15px;color:var(--muted);font-family:var(--sans);letter-spacing:0.04em">+55 21 99873-3496</span>
+          <a class="contato-ig" href="https://www.instagram.com/danijustus.art/" target="_blank" rel="noopener">@danijustus.art</a>
+          <div class="contato-meta">
+            <a href="mailto:daniela.justus@gmail.com">daniela.justus@gmail.com</a>
+            <span>+55 21 99873-3496</span>
           </div>
-          <a class="cta-wa" href="https://wa.me/5521998733496" target="_blank" style="margin-top:16px">
+          <a class="cta-wa" href="https://wa.me/5521998733496" target="_blank" rel="noopener">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             WhatsApp
           </a>
@@ -414,7 +368,6 @@ span[data-en]{display:none}
 </div>
 
 <script>
-// ── DATA ──
 var SERIES = {
   mutante: {
     pt:'Mutante', en:'Mutant',
@@ -461,7 +414,7 @@ var SERIES = {
   }
 };
 
-// ── LANGUAGE ──
+// LANGUAGE
 document.getElementById('btn-pt').addEventListener('click', function(){ setLang('pt'); });
 document.getElementById('btn-en').addEventListener('click', function(){ setLang('en'); });
 function setLang(lang) {
@@ -470,183 +423,119 @@ function setLang(lang) {
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 }
 
-// ── SLIDESHOW ──
-var slides = document.querySelectorAll('.slide');
-var cur = 0, timer, DUR = 6000;
-var pb = document.getElementById('progress-bar');
+// HOME PHOTO
+var homeImg = document.getElementById('home-img');
+homeImg.addEventListener('load', function(){ this.classList.add('loaded'); });
+if (homeImg.complete) homeImg.classList.add('loaded');
 
-function showSlide(n) {
-  slides[cur].classList.remove('active');
-  cur = ((n % slides.length) + slides.length) % slides.length;
-  slides[cur].classList.add('active');
-  document.getElementById('slide-counter').textContent = (cur+1) + ' / ' + slides.length;
-  pb.style.transition = 'none'; pb.style.width = '0%';
-  requestAnimationFrame(function(){ requestAnimationFrame(function(){
-    pb.style.transition = 'width ' + DUR + 'ms linear'; pb.style.width = '100%';
-  });});
-}
-function startTimer() { timer = setInterval(function(){ showSlide(cur+1); }, DUR); }
-function stopTimer() { clearInterval(timer); }
-
-// lazy load slide images
-Array.prototype.forEach.call(slides, function(slide) {
-  var img = slide.querySelector('img');
-  img.addEventListener('load', function(){ this.classList.add('loaded'); });
-  img.src = img.src; // trigger load
-  slide.addEventListener('click', function() {
-    lbOpen(slide.getAttribute('data-series'), parseInt(slide.getAttribute('data-idx')) || 0);
-  });
+// Click on home photo goes to series
+document.getElementById('home-photo').addEventListener('click', function(){
+  openPage('series');
 });
 
-document.getElementById('arrow-prev').addEventListener('click', function(){ showSlide(cur-1); stopTimer(); startTimer(); });
-document.getElementById('arrow-next').addEventListener('click', function(){ showSlide(cur+1); stopTimer(); startTimer(); });
-
-showSlide(0);
-startTimer();
-
-// ── NAVIGATION ──
+// NAVIGATION
 function goHome() {
-  document.getElementById('slideshow').classList.remove('hidden');
+  document.getElementById('home-photo').classList.remove('hidden');
+  document.getElementById('home-hint').style.display = '';
   document.getElementById('page').style.display = 'none';
-  document.getElementById('arrow-prev').style.display = '';
-  document.getElementById('arrow-next').style.display = '';
-  document.getElementById('slide-ui').style.display = '';
-  pb.style.display = '';
   document.body.style.overflow = 'hidden';
   document.body.style.background = '#000';
   document.querySelectorAll('.page-section').forEach(function(s){ s.style.display = 'none'; });
   window.scrollTo(0,0);
-  stopTimer(); startTimer();
 }
 
 function openPage(name) {
-  stopTimer();
-  document.getElementById('slideshow').classList.add('hidden');
+  document.getElementById('home-photo').classList.add('hidden');
+  document.getElementById('home-hint').style.display = 'none';
   document.getElementById('page').style.display = 'block';
-  document.getElementById('arrow-prev').style.display = 'none';
-  document.getElementById('arrow-next').style.display = 'none';
-  document.getElementById('slide-ui').style.display = 'none';
-  pb.style.display = 'none';
-  document.body.style.overflow = 'auto';
+  document.body.style.overflow = '';
   document.body.style.background = 'var(--bg)';
   document.querySelectorAll('.page-section').forEach(function(s){ s.style.display = 'none'; });
-  document.getElementById(name + '-page').style.display = 'block';
+  var target = document.getElementById(name + '-page');
+  if (target) { target.style.display = 'block'; }
   window.scrollTo(0,0);
 }
 
-// Wire up nav buttons
+// nav buttons
 document.getElementById('btn-home').addEventListener('click', goHome);
 document.getElementById('btn-series').addEventListener('click', function(){ openPage('series'); });
 document.getElementById('btn-sobre').addEventListener('click', function(){ openPage('sobre'); });
 document.getElementById('btn-contato').addEventListener('click', function(){ openPage('contato'); });
 
-// Series cards
-document.querySelectorAll('.series-card[data-goto]').forEach(function(el) {
-  el.addEventListener('click', function(){ openPage(el.getAttribute('data-goto')); });
+// series cards
+document.querySelectorAll('[data-goto]').forEach(function(el){
+  el.addEventListener('click', function(){ openPage(this.getAttribute('data-goto')); });
 });
 
-// Series back buttons
-document.querySelectorAll('.series-back[data-goto]').forEach(function(el) {
-  el.addEventListener('click', function(){ openPage(el.getAttribute('data-goto')); });
-});
-
-// Footer home buttons
-document.querySelectorAll('[data-goto-home]').forEach(function(el) {
+// back buttons & footer home
+document.querySelectorAll('[data-goto-home]').forEach(function(el){
   el.addEventListener('click', goHome);
 });
 
-// Init state
-document.body.style.overflow = 'hidden';
-document.getElementById('page').style.display = 'none';
-
-// keyboard
-document.addEventListener('keydown', function(e) {
-  if (document.getElementById('lb').classList.contains('open')) {
-    if (e.key === 'Escape') lbClose();
-    if (e.key === 'ArrowRight') lbNav(1);
-    if (e.key === 'ArrowLeft') lbNav(-1);
-    return;
-  }
-  if (document.getElementById('page').style.display !== 'none') return;
-  if (e.key === 'ArrowRight') { showSlide(cur+1); stopTimer(); startTimer(); }
-  if (e.key === 'ArrowLeft') { showSlide(cur-1); stopTimer(); startTimer(); }
-});
-
-// ── LIGHTBOX ──
-var lbKey = null, lbIdx = 0;
+// LIGHTBOX
+var lb = document.getElementById('lb');
 var lbImg = document.getElementById('lb-img');
+var lbSeries = null, lbIdx = 0;
 
-function lbOpen(key, idx) {
-  lbKey = key; lbIdx = idx || 0;
-  document.getElementById('lb').classList.add('open');
-  document.body.style.overflow = 'hidden';
+function lbOpen(seriesKey, idx) {
+  lbSeries = seriesKey;
+  lbIdx = idx;
   lbShow();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+
 function lbShow() {
-  var s = SERIES[lbKey], p = s.photos[lbIdx];
-  var en = document.body.classList.contains('en');
-  document.getElementById('lb-series').textContent = en ? s.en : s.pt;
+  var s = SERIES[lbSeries];
+  var p = s.photos[lbIdx];
+  var isEn = document.body.classList.contains('en');
   lbImg.classList.remove('ready');
-  lbImg.onload = function(){ this.classList.add('ready'); };
   lbImg.src = p.src;
+  lbImg.onload = function(){ lbImg.classList.add('ready'); };
+  document.getElementById('lb-series').textContent = isEn ? s.en : s.pt;
   document.getElementById('lb-title').textContent = p.title;
-  document.getElementById('lb-meta').textContent = en ? p.en : p.pt;
+  document.getElementById('lb-meta').textContent = isEn ? p.en : p.pt;
   document.getElementById('lb-count').textContent = (lbIdx+1) + ' / ' + s.photos.length;
 }
-function lbNav(d) {
-  var l = SERIES[lbKey].photos.length;
-  lbIdx = ((lbIdx + d) + l) % l;
-  lbShow();
-}
+
 function lbClose() {
-  document.getElementById('lb').classList.remove('open');
-  var isPage = document.getElementById('page').style.display !== 'none';
-  document.body.style.overflow = isPage ? 'auto' : 'hidden';
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 document.getElementById('lb-close').addEventListener('click', lbClose);
-document.getElementById('lb-prev').addEventListener('click', function(){ lbNav(-1); });
-document.getElementById('lb-next').addEventListener('click', function(){ lbNav(1); });
-document.getElementById('lb').addEventListener('click', function(e){
-  if (e.target === this || e.target === document.getElementById('lb-img-wrap')) lbClose();
+document.getElementById('lb-prev').addEventListener('click', function(){
+  var len = SERIES[lbSeries].photos.length;
+  lbIdx = (lbIdx - 1 + len) % len;
+  lbShow();
+});
+document.getElementById('lb-next').addEventListener('click', function(){
+  lbIdx = (lbIdx + 1) % SERIES[lbSeries].photos.length;
+  lbShow();
+});
+document.addEventListener('keydown', function(e){
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') lbClose();
+  if (e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
+  if (e.key === 'ArrowRight') document.getElementById('lb-next').click();
 });
 
-// Work grid lightbox
-document.querySelectorAll('.work-img').forEach(function(div) {
-  div.addEventListener('click', function() {
-    var section = div.closest('.page-section');
-    if (!section) return;
-    var key = section.id.replace('-page','');
-    if (!SERIES[key]) return;
-    var works = section.querySelectorAll('.work-img');
-    var idx = Array.prototype.indexOf.call(works, div);
-    lbOpen(key, idx);
+// work image click → lightbox
+document.querySelectorAll('.work-item').forEach(function(item){
+  item.addEventListener('click', function(){
+    var page = item.closest('.page-section');
+    if (!page) return;
+    var pageId = page.id.replace('-page','');
+    var imgs = Array.from(page.querySelectorAll('.work-img img'));
+    var clickedImg = item.querySelector('.work-img img');
+    var idx = imgs.indexOf(clickedImg);
+    if (idx < 0) idx = 0;
+    lbOpen(pageId, idx);
   });
 });
 
-// Prevent external links from bubbling to page handlers
-document.querySelectorAll('a[target="_blank"], a[href^="mailto"], a[href^="https://wa.me"]').forEach(function(a) {
-  a.addEventListener('click', function(e) { e.stopPropagation(); });
-});
-var tx = null;
-document.getElementById('slideshow').addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, {passive:true});
-document.getElementById('slideshow').addEventListener('touchend', function(e) {
-  if (tx === null) return;
-  var dx = e.changedTouches[0].clientX - tx;
-  if (Math.abs(dx) > 50) { showSlide(dx < 0 ? cur+1 : cur-1); stopTimer(); startTimer(); }
-  else { var s = slides[cur]; lbOpen(s.getAttribute('data-series'), parseInt(s.getAttribute('data-idx'))||0); }
-  tx = null;
-});
-
-// touch swipe on lightbox
-var lbTx = null;
-document.getElementById('lb').addEventListener('touchstart', function(e){ lbTx = e.touches[0].clientX; }, {passive:true});
-document.getElementById('lb').addEventListener('touchend', function(e) {
-  if (lbTx === null) return;
-  var dx = e.changedTouches[0].clientX - lbTx;
-  if (Math.abs(dx) > 50) lbNav(dx < 0 ? 1 : -1);
-  lbTx = null;
-});
+// init
+goHome();
 </script>
 </body>
 </html>
