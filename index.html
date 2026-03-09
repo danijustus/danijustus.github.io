@@ -12,8 +12,6 @@
 :root{--bg:#f2f0ed;--text:#1c1b19;--muted:#8a8680;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',sans-serif}
 html,body{height:100%}
 body{background:#000;color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-
-/* HEADER */
 header{position:fixed;top:0;left:0;right:0;z-index:300;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:var(--bg);border-bottom:1px solid rgba(28,27,25,0.1)}
 .logo{font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--text);cursor:pointer}
 .logo:hover{opacity:0.5}
@@ -24,21 +22,14 @@ nav{display:flex;align-items:center;gap:36px}
 .lang-btn{background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);padding:0;transition:color 0.2s}
 .lang-btn.active{color:var(--text)}
 .lang-sep{font-size:10px;color:rgba(28,27,25,0.25)}
-
-/* HOME PHOTO — static, full screen */
 #home-photo{position:fixed;top:72px;left:0;right:0;bottom:0;z-index:0;background:#000;cursor:pointer}
 #home-photo.hidden{display:none}
 #home-photo img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity 1s}
 #home-photo img.loaded{opacity:1}
-#home-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);pointer-events:none}
-#home-hint{position:fixed;bottom:48px;right:52px;z-index:50;font-family:var(--sans);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);animation:pulse 3s ease-in-out infinite;pointer-events:none}
-@keyframes pulse{0%,100%{opacity:0.35}50%{opacity:0.75}}
-
-/* PAGE */
+#home-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,rgba(0,0,0,0.65),transparent);pointer-events:none}
+#home-hint{position:fixed;bottom:48px;right:52px;z-index:50;font-family:var(--sans);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);pointer-events:none}
 #page{display:none;min-height:100vh;background:var(--bg);padding-top:92px}
 .page-section{display:none}
-
-/* SERIES INDEX */
 .section-eyebrow{font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:72px;display:block}
 .series-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px}
 .series-card{cursor:pointer;position:relative;overflow:hidden;background:#ccc8c2}
@@ -48,8 +39,6 @@ nav{display:flex;align-items:center;gap:36px}
 .series-card-info{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.65) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;pointer-events:none}
 .series-card-name{font-family:var(--serif);font-size:28px;font-weight:300;letter-spacing:0.06em;text-transform:uppercase;color:#fff;line-height:1}
 .series-card-sub{font-size:11px;letter-spacing:0.1em;color:rgba(255,255,255,0.5);margin-top:8px;font-style:italic;font-family:var(--serif)}
-
-/* SERIES PAGE */
 .series-page{padding-bottom:140px}
 .series-header{padding:0 80px 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;border-bottom:1px solid rgba(28,27,25,0.08);margin-bottom:80px}
 .series-header h1{font-family:var(--serif);font-size:clamp(52px,6vw,88px);font-weight:300;line-height:0.95;letter-spacing:0.03em}
@@ -63,8 +52,6 @@ nav{display:flex;align-items:center;gap:36px}
 .work-caption strong{font-family:var(--serif);font-style:italic;font-weight:400;font-size:16px;color:var(--text);display:block;margin-bottom:3px}
 .series-back{display:inline-block;margin:72px 80px 0;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(28,27,25,0.18);padding-bottom:2px;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--sans)}
 .series-back:hover{color:var(--text)}
-
-/* SOBRE */
 .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:start;max-width:1300px}
 .sobre-img img{width:100%;display:block}
 .sobre-text h2{font-family:var(--serif);font-size:clamp(40px,4.5vw,60px);font-weight:300;line-height:1.05;margin-bottom:44px}
@@ -74,8 +61,6 @@ nav{display:flex;align-items:center;gap:36px}
 .expo ul{list-style:none}
 .expo li{font-size:14px;color:var(--muted);padding:12px 0;border-bottom:1px solid rgba(28,27,25,0.07);display:flex;gap:28px}
 .expo li span:first-child{color:rgba(28,27,25,0.28);flex-shrink:0;width:36px}
-
-/* CONTATO */
 .contato-body{max-width:600px}
 .contato-body h2{font-family:var(--serif);font-size:clamp(48px,6vw,88px);font-weight:300;font-style:italic;line-height:1;margin-bottom:40px}
 .contato-body p{font-size:16px;color:var(--muted);line-height:2;margin-bottom:60px}
@@ -87,14 +72,10 @@ nav{display:flex;align-items:center;gap:36px}
 .contato-meta a:hover{color:var(--text)}
 .cta-wa{display:inline-flex;align-items:center;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--bg);background:var(--text);padding:16px 44px;width:fit-content;transition:opacity 0.25s;margin-top:8px}
 .cta-wa:hover{opacity:0.7}
-
-/* FOOTER */
 footer{padding:28px 80px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(28,27,25,0.08);margin-top:80px}
 footer p{font-size:11px;letter-spacing:0.08em;color:var(--muted)}
 .footer-home{font-size:11px;color:var(--muted);letter-spacing:0.08em;background:none;border:none;cursor:pointer;font-family:var(--sans)}
 .footer-home:hover{color:var(--text)}
-
-/* LIGHTBOX */
 #lb{display:none;position:fixed;inset:0;z-index:500;background:#0a0908;flex-direction:column;align-items:center;justify-content:center}
 #lb.open{display:flex}
 #lb-img-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:80px 80px 100px}
@@ -110,16 +91,12 @@ footer p{font-size:11px;letter-spacing:0.08em;color:var(--muted)}
 .lb-nav{position:fixed;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.2);font-size:44px;padding:28px 20px;line-height:1;transition:color 0.2s}
 .lb-nav:hover{color:rgba(255,255,255,0.85)}
 #lb-prev{left:0}#lb-next{right:0}
-
-/* LANGUAGE */
 [data-en]{display:none}
 body.en [data-pt]{display:none}
 body.en [data-en]{display:block}
 body.en span[data-pt]{display:none}
 body.en span[data-en]{display:inline}
 span[data-en]{display:none}
-
-/* RESPONSIVE */
 @media(max-width:900px){
   header{padding:0 24px}
   nav{gap:18px}
@@ -129,7 +106,7 @@ span[data-en]{display:none}
   .series-works{grid-template-columns:1fr;gap:48px;padding:0 24px}
   .series-back{margin:48px 24px 0}
   .sobre-grid{grid-template-columns:1fr;gap:40px}
-  #page > div > div{padding-left:24px!important;padding-right:24px!important}
+  #page>div>div{padding-left:24px!important;padding-right:24px!important}
   footer{padding:22px 24px}
   #lb-img-wrap{padding:72px 16px 88px}
   #lb-cap{left:20px;right:20px}
@@ -144,45 +121,42 @@ span[data-en]{display:none}
 <header>
   <a class="logo" id="btn-home">Dani Justus</a>
   <nav>
-    <button class="nav-btn" id="btn-series"><span data-pt>Séries</span><span data-en>Series</span></button>
+    <button class="nav-btn" id="btn-series"><span data-pt>S&#233;ries</span><span data-en>Series</span></button>
     <button class="nav-btn" id="btn-sobre"><span data-pt>Sobre</span><span data-en>About</span></button>
     <button class="nav-btn" id="btn-contato"><span data-pt>Contato</span><span data-en>Contact</span></button>
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-pt">PT</button>
-      <span class="lang-sep">·</span>
+      <span class="lang-sep">&#183;</span>
       <button class="lang-btn" id="btn-en">EN</button>
     </div>
   </nav>
 </header>
 
-<!-- HOME — foto estática -->
 <div id="home-photo">
   <img id="home-img" src="snr-07.jpg" alt="Dani Justus">
 </div>
-<span id="home-hint"><span data-pt>clique para ver as séries</span><span data-en>click to see series</span></span>
+<span id="home-hint"><span data-pt>clique para ver as s&#233;ries</span><span data-en>click to see series</span></span>
 
-<!-- PAGES -->
 <div id="page">
 
-  <!-- SÉRIES INDEX -->
   <div id="series-page" class="page-section">
     <div style="padding:0 80px 140px">
-      <span class="section-eyebrow"><span data-pt>Séries</span><span data-en>Series</span></span>
+      <span class="section-eyebrow"><span data-pt>S&#233;ries</span><span data-en>Series</span></span>
       <div class="series-grid">
         <div class="series-card" data-goto="mutante">
           <div class="series-card-ratio"></div>
           <img src="mut-08.jpg" alt="Mutante">
           <div class="series-card-info">
             <div class="series-card-name"><span data-pt>Mutante</span><span data-en>Mutant</span></div>
-            <div class="series-card-sub"><span data-pt>Analógico · Rio de Janeiro &amp; Bahia</span><span data-en>Analog · Rio de Janeiro &amp; Bahia</span></div>
+            <div class="series-card-sub"><span data-pt>Anal&#243;gico &#183; Rio de Janeiro &amp; Bahia</span><span data-en>Analog &#183; Rio de Janeiro &amp; Bahia</span></div>
           </div>
         </div>
         <div class="series-card" data-goto="sonorio">
           <div class="series-card-ratio"></div>
-          <img src="snr-06.jpg" alt="Só no Rio">
+          <img src="snr-06.jpg" alt="S&#243; no Rio">
           <div class="series-card-info">
-            <div class="series-card-name"><span data-pt>Só no Rio</span><span data-en>Only in Rio</span></div>
-            <div class="series-card-sub"><span data-pt>Analógico · Ipanema &amp; Leblon</span><span data-en>Analog · Ipanema &amp; Leblon</span></div>
+            <div class="series-card-name"><span data-pt>S&#243; no Rio</span><span data-en>Only in Rio</span></div>
+            <div class="series-card-sub"><span data-pt>Anal&#243;gico &#183; Ipanema &amp; Leblon</span><span data-en>Analog &#183; Ipanema &amp; Leblon</span></div>
           </div>
         </div>
         <div class="series-card" data-goto="cartasoamar">
@@ -190,23 +164,22 @@ span[data-en]{display:none}
           <img src="cam-05.jpg" alt="Cartas ao Mar">
           <div class="series-card-info">
             <div class="series-card-name"><span data-pt>Cartas ao Mar</span><span data-en>Letters to the Sea</span></div>
-            <div class="series-card-sub"><span data-pt>Analógico · Rio de Janeiro</span><span data-en>Analog · Rio de Janeiro</span></div>
+            <div class="series-card-sub"><span data-pt>Anal&#243;gico &#183; Rio de Janeiro</span><span data-en>Analog &#183; Rio de Janeiro</span></div>
           </div>
         </div>
       </div>
     </div>
-    <footer><p>© 2026 Dani Justus · Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>↑ Início</span><span data-en>↑ Home</span></button></footer>
+    <footer><p>&#169; 2026 Dani Justus &#183; Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>&#8593; In&#237;cio</span><span data-en>&#8593; Home</span></button></footer>
   </div>
 
-  <!-- MUTANTE -->
   <div id="mutante-page" class="page-section series-page">
     <div class="series-header">
       <h1><span data-pt>Mutante</span><span data-en>Mutant</span></h1>
       <div class="series-header-text">
         <div data-pt>
-          <p>Todas as imagens que compõem a série <em>Mutante</em> foram produzidas com câmeras analógicas antigas e, muitas delas, com rolos de filme vencidos, que ficaram esquecidos por cerca de 15 anos.</p>
-          <p>A revelação desses negativos é feita de forma caseira, pela própria fotógrafa, lhe possibilitando experimentar, de ponta a ponta, a construção de suas imagens fotográficas.</p>
-          <p>O trabalho é uma celebração de um processo que resiste ao tempo. Todas as falhas e alterações derivadas da idade de todo o material trazem para o trabalho uma dimensão de vida. Tudo que aqui está é real, palpável, e, como todos nós, <strong>MUTANTE</strong>.</p>
+          <p>Todas as imagens que comp&#245;em a s&#233;rie <em>Mutante</em> foram produzidas com c&#226;meras anal&#243;gicas antigas e, muitas delas, com rolos de filme vencidos, que ficaram esquecidos por cerca de 15 anos.</p>
+          <p>A revela&#231;&#227;o desses negativos &#233; feita de forma caseira, pela pr&#243;pria fot&#243;grafa, lhe possibilitando experimentar, de ponta a ponta, a constru&#231;&#227;o de suas imagens fotogr&#225;ficas.</p>
+          <p>O trabalho &#233; uma celebra&#231;&#227;o de um processo que resiste ao tempo. Todas as falhas e altera&#231;&#245;es derivadas da idade de todo o material trazem para o trabalho uma dimens&#227;o de vida. Tudo que aqui est&#225; &#233; real, palp&#225;vel, e, como todos n&#243;s, <strong>MUTANTE</strong>.</p>
         </div>
         <div data-en>
           <p>All images in the <em>Mutant</em> series were produced with vintage analog cameras and, in many cases, with expired film rolls forgotten for around 15 years.</p>
@@ -216,85 +189,82 @@ span[data-en]{display:none}
       </div>
     </div>
     <div class="series-works">
-      <div class="work-item"><div class="work-img"><img src="mut-01.jpg" alt="Onda"></div><div class="work-caption"><strong>Onda</strong><span data-pt>Dezembro/2023 · Leblon · 50×50 cm</span><span data-en>December/2023 · Leblon · 50×50 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="mut-02.jpg" alt="Dois Irmãos"></div><div class="work-caption"><strong>Dois Irmãos</strong><span data-pt>Dezembro/2023 · Leblon · 50×50 cm</span><span data-en>December/2023 · Leblon · 50×50 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="mut-03.jpg" alt="Roda Mundo"></div><div class="work-caption"><strong>Roda Mundo</strong><span data-pt>Dezembro/2023 · Ipanema · 50×37,5 cm</span><span data-en>December/2023 · Ipanema · 50×37.5 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="mut-04.jpg" alt="Mundo Invertido"></div><div class="work-caption"><strong>Mundo Invertido</strong><span data-pt>Outubro/2024 · Leblon · 60×45 cm</span><span data-en>October/2024 · Leblon · 60×45 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="mut-05.jpg" alt="Caixote"></div><div class="work-caption"><strong>Caixote</strong><span data-pt>Dezembro/2023 · Leblon · 50×50 cm</span><span data-en>December/2023 · Leblon · 50×50 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="mut-06.jpg" alt="Homenagem a Debret"></div><div class="work-caption"><strong>Homenagem a Debret</strong><span data-pt>Abril/2024 · Jardim Botânico · 60×45 cm</span><span data-en>April/2024 · Jardim Botânico · 60×45 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="mut-07.jpg" alt="Pindorama"></div><div class="work-caption"><strong>Pindorama</strong><span data-pt>Setembro/2025 · Jardim Botânico · pinhole · 50×50 cm</span><span data-en>September/2025 · Jardim Botânico · pinhole · 50×50 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="mut-08.jpg" alt="Balada Baiana"></div><div class="work-caption"><strong>Balada Baiana</strong><span data-pt>Janeiro/2025 · Bahia · 80×60 cm</span><span data-en>January/2025 · Bahia · 80×60 cm</span></div></div>
-      <div class="work-item"><div class="work-img" style="display:grid;grid-template-columns:1fr 1fr;gap:3px"><img src="mut-09a.jpg" alt="Domingo I"><img src="mut-09b.jpg" alt="Domingo II"></div><div class="work-caption"><strong>Díptico — Domingo</strong><span data-pt>Dezembro/2023 · Ipanema · 50×31,6 cm cada</span><span data-en>December/2023 · Ipanema · 50×31.6 cm each</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="mut-10.jpg" alt="Testemunhas Cariocas"></div><div class="work-caption"><strong>Testemunhas Cariocas</strong><span data-pt>Outubro/2024 · Parque Lage · 100×64 cm</span><span data-en>October/2024 · Parque Lage · 100×64 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="mut-11.jpg" alt="O que fica na memória?"></div><div class="work-caption"><strong>O que fica na memória?</strong><span data-pt>Outubro/2025 · Jardim Botânico · 50×50 cm</span><span data-en>October/2025 · Jardim Botânico · 50×50 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="mut-01.jpg" alt="Onda"></div><div class="work-caption"><strong>Onda</strong><span data-pt>Dezembro/2023 &#183; Leblon &#183; 50&#215;50 cm</span><span data-en>December/2023 &#183; Leblon &#183; 50&#215;50 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="mut-02.jpg" alt="Dois Irm&#227;os"></div><div class="work-caption"><strong>Dois Irm&#227;os</strong><span data-pt>Dezembro/2023 &#183; Leblon &#183; 50&#215;50 cm</span><span data-en>December/2023 &#183; Leblon &#183; 50&#215;50 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="mut-03.jpg" alt="Roda Mundo"></div><div class="work-caption"><strong>Roda Mundo</strong><span data-pt>Dezembro/2023 &#183; Ipanema &#183; 50&#215;37,5 cm</span><span data-en>December/2023 &#183; Ipanema &#183; 50&#215;37.5 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="mut-04.jpg" alt="Mundo Invertido"></div><div class="work-caption"><strong>Mundo Invertido</strong><span data-pt>Outubro/2024 &#183; Leblon &#183; 60&#215;45 cm</span><span data-en>October/2024 &#183; Leblon &#183; 60&#215;45 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="mut-05.jpg" alt="Caixote"></div><div class="work-caption"><strong>Caixote</strong><span data-pt>Dezembro/2023 &#183; Leblon &#183; 50&#215;50 cm</span><span data-en>December/2023 &#183; Leblon &#183; 50&#215;50 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="mut-06.jpg" alt="Homenagem a Debret"></div><div class="work-caption"><strong>Homenagem a Debret</strong><span data-pt>Abril/2024 &#183; Jardim Bot&#226;nico &#183; 60&#215;45 cm</span><span data-en>April/2024 &#183; Jardim Bot&#226;nico &#183; 60&#215;45 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="mut-07.jpg" alt="Pindorama"></div><div class="work-caption"><strong>Pindorama</strong><span data-pt>Setembro/2025 &#183; Jardim Bot&#226;nico &#183; pinhole &#183; 50&#215;50 cm</span><span data-en>September/2025 &#183; Jardim Bot&#226;nico &#183; pinhole &#183; 50&#215;50 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="mut-08.jpg" alt="Balada Baiana"></div><div class="work-caption"><strong>Balada Baiana</strong><span data-pt>Janeiro/2025 &#183; Bahia &#183; 80&#215;60 cm</span><span data-en>January/2025 &#183; Bahia &#183; 80&#215;60 cm</span></div></div>
+      <div class="work-item"><div class="work-img" style="display:grid;grid-template-columns:1fr 1fr;gap:3px"><img src="mut-09a.jpg" alt="Domingo I"><img src="mut-09b.jpg" alt="Domingo II"></div><div class="work-caption"><strong>D&#237;ptico &#8212; Domingo</strong><span data-pt>Dezembro/2023 &#183; Ipanema &#183; 50&#215;31,6 cm cada</span><span data-en>December/2023 &#183; Ipanema &#183; 50&#215;31.6 cm each</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="mut-10.jpg" alt="Testemunhas Cariocas"></div><div class="work-caption"><strong>Testemunhas Cariocas</strong><span data-pt>Outubro/2024 &#183; Parque Lage &#183; 100&#215;64 cm</span><span data-en>October/2024 &#183; Parque Lage &#183; 100&#215;64 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="mut-11.jpg" alt="O que fica na mem&#243;ria?"></div><div class="work-caption"><strong>O que fica na mem&#243;ria?</strong><span data-pt>Outubro/2025 &#183; Jardim Bot&#226;nico &#183; 50&#215;50 cm</span><span data-en>October/2025 &#183; Jardim Bot&#226;nico &#183; 50&#215;50 cm</span></div></div>
     </div>
-    <button class="series-back" data-goto="series"><span data-pt>← Todas as séries</span><span data-en>← All series</span></button>
-    <footer><p>© 2026 Dani Justus · Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>↑ Início</span><span data-en>↑ Home</span></button></footer>
+    <button class="series-back" data-goto="series"><span data-pt>&#8592; Todas as s&#233;ries</span><span data-en>&#8592; All series</span></button>
+    <footer><p>&#169; 2026 Dani Justus &#183; Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>&#8593; In&#237;cio</span><span data-en>&#8593; Home</span></button></footer>
   </div>
 
-  <!-- SÓ NO RIO -->
   <div id="sonorio-page" class="page-section series-page">
     <div class="series-header">
-      <h1><span data-pt>Só no Rio</span><span data-en>Only in Rio</span></h1>
+      <h1><span data-pt>S&#243; no Rio</span><span data-en>Only in Rio</span></h1>
       <div class="series-header-text">
         <div data-pt>
-          <p><em>Só no Rio</em> é uma série que investiga o que significa ser carioca a partir da ocupação do espaço público. Entre a praia e o verão, as imagens falam de convivência, corpo, improviso e celebração em espaços absolutamente democráticos.</p>
-          <p>As fotografias foram realizadas com câmeras analógicas antigas, sem pré-visualização e reveladas de forma caseira. O processo lento e impreciso faz parte da construção das imagens, incorporando o erro, o acaso e a passagem do tempo como linguagem.</p>
-          <p>Mais do que representar o Rio de Janeiro, a série busca registrar um modo de estar: coletivo, intenso e efêmero.</p>
+          <p><em>S&#243; no Rio</em> &#233; uma s&#233;rie que investiga o que significa ser carioca a partir da ocupa&#231;&#227;o do espa&#231;o p&#250;blico. Entre a praia e o ver&#227;o, as imagens falam de conviv&#234;ncia, corpo, improviso e celebra&#231;&#227;o em espa&#231;os absolutamente democr&#225;ticos.</p>
+          <p>As fotografias foram realizadas com c&#226;meras anal&#243;gicas antigas, sem pr&#233;-visualiza&#231;&#227;o e reveladas de forma caseira. O processo lento e impreciso faz parte da constru&#231;&#227;o das imagens, incorporando o erro, o acaso e a passagem do tempo como linguagem.</p>
+          <p>Mais do que representar o Rio de Janeiro, a s&#233;rie busca registrar um modo de estar: coletivo, intenso e ef&#234;mero.</p>
         </div>
         <div data-en>
-          <p><em>Só no Rio</em> investigates what it means to be carioca through the occupation of public space. Between the beach and summer, the images speak of coexistence, body, improvisation, and celebration in absolutely democratic spaces.</p>
+          <p><em>S&#243; no Rio</em> investigates what it means to be carioca through the occupation of public space. Between the beach and summer, the images speak of coexistence, body, improvisation, and celebration in absolutely democratic spaces.</p>
           <p>The photographs were made with vintage analog cameras, without pre-visualization, and developed at home. The slow, imprecise process is part of the construction of the images, incorporating error, chance, and the passage of time as language.</p>
           <p>More than representing Rio de Janeiro, the series seeks to capture a way of being: collective, intense, and ephemeral.</p>
         </div>
       </div>
     </div>
     <div class="series-works">
-      <div class="work-item"><div class="work-img"><img src="snr-01.jpg" alt="Sem título"></div><div class="work-caption"><strong>Sem título</strong><span data-pt>Novembro/2025 · Ipanema · 60×45 cm</span><span data-en>November/2025 · Ipanema · 60×45 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="snr-02.jpg" alt="Sem título"></div><div class="work-caption"><strong>Sem título</strong><span data-pt>Novembro/2025 · Ipanema · 60×45 cm</span><span data-en>November/2025 · Ipanema · 60×45 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="snr-03.jpg" alt="Ipanema"></div><div class="work-caption"><strong>Ipanema</strong><span data-pt>Novembro/2025 · Ipanema · 110×80 cm</span><span data-en>November/2025 · Ipanema · 110×80 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="snr-04.jpg" alt="A melhor praia do ano"></div><div class="work-caption"><strong>A melhor praia do ano</strong><span data-pt>Dezembro/2025 · Arpoador · 70×70 cm</span><span data-en>December/2025 · Arpoador · 70×70 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="snr-05.jpg" alt="Olhos nos olhos"></div><div class="work-caption"><strong>Olhos nos olhos</strong><span data-pt>Novembro/2025 · Ipanema · 60×45 cm</span><span data-en>November/2025 · Ipanema · 60×45 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="snr-06.jpg" alt="Sem título"></div><div class="work-caption"><strong>Sem título</strong><span data-pt>Fevereiro/2026 · Ipanema · intervenção em água do mar · 75×50 cm</span><span data-en>February/2026 · Ipanema · seawater intervention · 75×50 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="snr-07.jpg" alt="Sem título"></div><div class="work-caption"><strong>Sem título</strong><span data-pt>Fevereiro/2026 · Ipanema · intervenção em água do mar · 75×50 cm</span><span data-en>February/2026 · Ipanema · seawater intervention · 75×50 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="snr-08.jpg" alt="Ao mar o que é do mar"></div><div class="work-caption"><strong>Ao mar o que é do mar</strong><span data-pt>Fevereiro/2026 · Ipanema · intervenção em água do mar · 75×50 cm</span><span data-en>February/2026 · Ipanema · seawater intervention · 75×50 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="snr-09.jpg" alt="Ipanema, 1970"></div><div class="work-caption"><strong>Ipanema, 1970</strong><span data-pt>Fevereiro/2026 · Ipanema · intervenção em água do mar · 75×50 cm</span><span data-en>February/2026 · Ipanema · seawater intervention · 75×50 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="snr-10.jpg" alt="Sem título"></div><div class="work-caption"><strong>Sem título</strong><span data-pt>Fevereiro/2026 · Ipanema · 75×50 cm</span><span data-en>February/2026 · Ipanema · 75×50 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="snr-11.jpg" alt="Sem título"></div><div class="work-caption"><strong>Sem título</strong><span data-pt>Fevereiro/2026 · Ipanema · 75×50 cm</span><span data-en>February/2026 · Ipanema · 75×50 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="snr-01.jpg" alt="Sem t&#237;tulo"></div><div class="work-caption"><strong>Sem t&#237;tulo</strong><span data-pt>Novembro/2025 &#183; Ipanema &#183; 60&#215;45 cm</span><span data-en>November/2025 &#183; Ipanema &#183; 60&#215;45 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="snr-02.jpg" alt="Sem t&#237;tulo"></div><div class="work-caption"><strong>Sem t&#237;tulo</strong><span data-pt>Novembro/2025 &#183; Ipanema &#183; 60&#215;45 cm</span><span data-en>November/2025 &#183; Ipanema &#183; 60&#215;45 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="snr-03.jpg" alt="Ipanema"></div><div class="work-caption"><strong>Ipanema</strong><span data-pt>Novembro/2025 &#183; Ipanema &#183; 110&#215;80 cm</span><span data-en>November/2025 &#183; Ipanema &#183; 110&#215;80 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="snr-04.jpg" alt="A melhor praia do ano"></div><div class="work-caption"><strong>A melhor praia do ano</strong><span data-pt>Dezembro/2025 &#183; Arpoador &#183; 70&#215;70 cm</span><span data-en>December/2025 &#183; Arpoador &#183; 70&#215;70 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="snr-05.jpg" alt="Olhos nos olhos"></div><div class="work-caption"><strong>Olhos nos olhos</strong><span data-pt>Novembro/2025 &#183; Ipanema &#183; 60&#215;45 cm</span><span data-en>November/2025 &#183; Ipanema &#183; 60&#215;45 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="snr-06.jpg" alt="Sem t&#237;tulo"></div><div class="work-caption"><strong>Sem t&#237;tulo</strong><span data-pt>Fevereiro/2026 &#183; Ipanema &#183; interven&#231;&#227;o em &#225;gua do mar &#183; 75&#215;50 cm</span><span data-en>February/2026 &#183; Ipanema &#183; seawater intervention &#183; 75&#215;50 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="snr-07.jpg" alt="Sem t&#237;tulo"></div><div class="work-caption"><strong>Sem t&#237;tulo</strong><span data-pt>Fevereiro/2026 &#183; Ipanema &#183; interven&#231;&#227;o em &#225;gua do mar &#183; 75&#215;50 cm</span><span data-en>February/2026 &#183; Ipanema &#183; seawater intervention &#183; 75&#215;50 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="snr-08.jpg" alt="Ao mar o que &#233; do mar"></div><div class="work-caption"><strong>Ao mar o que &#233; do mar</strong><span data-pt>Fevereiro/2026 &#183; Ipanema &#183; interven&#231;&#227;o em &#225;gua do mar &#183; 75&#215;50 cm</span><span data-en>February/2026 &#183; Ipanema &#183; seawater intervention &#183; 75&#215;50 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="snr-09.jpg" alt="Ipanema, 1970"></div><div class="work-caption"><strong>Ipanema, 1970</strong><span data-pt>Fevereiro/2026 &#183; Ipanema &#183; interven&#231;&#227;o em &#225;gua do mar &#183; 75&#215;50 cm</span><span data-en>February/2026 &#183; Ipanema &#183; seawater intervention &#183; 75&#215;50 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="snr-10.jpg" alt="Sem t&#237;tulo"></div><div class="work-caption"><strong>Sem t&#237;tulo</strong><span data-pt>Fevereiro/2026 &#183; Ipanema &#183; 75&#215;50 cm</span><span data-en>February/2026 &#183; Ipanema &#183; 75&#215;50 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="snr-11.jpg" alt="Sem t&#237;tulo"></div><div class="work-caption"><strong>Sem t&#237;tulo</strong><span data-pt>Fevereiro/2026 &#183; Ipanema &#183; 75&#215;50 cm</span><span data-en>February/2026 &#183; Ipanema &#183; 75&#215;50 cm</span></div></div>
     </div>
-    <button class="series-back" data-goto="series"><span data-pt>← Todas as séries</span><span data-en>← All series</span></button>
-    <footer><p>© 2026 Dani Justus · Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>↑ Início</span><span data-en>↑ Home</span></button></footer>
+    <button class="series-back" data-goto="series"><span data-pt>&#8592; Todas as s&#233;ries</span><span data-en>&#8592; All series</span></button>
+    <footer><p>&#169; 2026 Dani Justus &#183; Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>&#8593; In&#237;cio</span><span data-en>&#8593; Home</span></button></footer>
   </div>
 
-  <!-- CARTAS AO MAR -->
   <div id="cartasoamar-page" class="page-section series-page">
     <div class="series-header">
       <h1><span data-pt>Cartas ao Mar</span><span data-en>Letters to the Sea</span></h1>
       <div class="series-header-text">
         <div data-pt>
-          <p><em>"Morri de amor, morri de saudade, mas não morri de vontade."</em></p>
-          <p><strong>Cartas ao Mar</strong> nasce dessa urgência de se manifestar. De um desejo persistente de expressão que encontra na fotografia um lugar possível, que vai além do registro e encontra a invenção.</p>
-          <p>Aqui a artista interfere no processo analógico: escreve dentro da câmera, sobrepõe tempos, criando múltiplas exposições que se costuram como manifestos. O mar aparece como destino simbólico dessas cartas.</p>
+          <p><em>&#8220;Morri de amor, morri de saudade, mas n&#227;o morri de vontade.&#8221;</em></p>
+          <p><strong>Cartas ao Mar</strong> nasce dessa urg&#234;ncia de se manifestar. De um desejo persistente de express&#227;o que encontra na fotografia um lugar poss&#237;vel, que vai al&#233;m do registro e encontra a inven&#231;&#227;o.</p>
+          <p>Aqui a artista interfere no processo anal&#243;gico: escreve dentro da c&#226;mera, sobrep&#245;e tempos, criando m&#250;ltiplas exposi&#231;&#245;es que se costuram como manifestos. O mar aparece como destino simb&#243;lico dessas cartas.</p>
         </div>
         <div data-en>
-          <p><em>"I died of love, I died of longing, but I did not die of desire."</em></p>
-          <p><strong>Cartas ao Mar</strong> (Letters to the Sea) is born from this urgency to express oneself. From a persistent desire for expression that finds in photography a possible place — one that goes beyond documentation and finds invention.</p>
+          <p><em>&#8220;I died of love, I died of longing, but I did not die of desire.&#8221;</em></p>
+          <p><strong>Cartas ao Mar</strong> (Letters to the Sea) is born from this urgency to express oneself. From a persistent desire for expression that finds in photography a possible place &#8212; one that goes beyond documentation and finds invention.</p>
           <p>Here the artist intervenes in the analog process: writes inside the camera, overlaps time, creating multiple exposures that stitch together like manifestos. The sea appears as their symbolic destination.</p>
         </div>
       </div>
     </div>
     <div class="series-works">
-      <div class="work-item"><div class="work-img"><img src="cam-01.jpg" alt="Como faz para voltar no tempo?"></div><div class="work-caption"><strong>Como faz para voltar no tempo?</strong><span data-pt>Março/2025 · Lagoa · 60×45 cm</span><span data-en>March/2025 · Lagoa · 60×45 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="cam-02.jpg" alt="Morri de Amor"></div><div class="work-caption"><strong>Morri de Amor</strong><span data-pt>Setembro/2025 · Ipanema · 45×60 cm</span><span data-en>September/2025 · Ipanema · 45×60 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="cam-03.jpg" alt="Morri de Saudade"></div><div class="work-caption"><strong>Morri de Saudade</strong><span data-pt>Novembro/2025 · Leblon · 45×60 cm</span><span data-en>November/2025 · Leblon · 45×60 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="cam-04.jpg" alt="Não Morri de Vontade"></div><div class="work-caption"><strong>Não Morri de Vontade</strong><span data-pt>Novembro/2025 · Arpoador · 45×60 cm</span><span data-en>November/2025 · Arpoador · 45×60 cm</span></div></div>
-      <div class="work-item"><div class="work-img"><img src="cam-05.jpg" alt="Eu Fiz Essa Foto Pra Você"></div><div class="work-caption"><strong>Eu Fiz Essa Foto Pra Você</strong><span data-pt>Abril/2025 · Arpoador · 60×45 cm</span><span data-en>April/2025 · Arpoador · 60×45 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="cam-01.jpg" alt=""></div><div class="work-caption"><strong>Como faz para voltar no tempo?</strong><span data-pt>Mar&#231;o/2025 &#183; Lagoa &#183; 60&#215;45 cm</span><span data-en>March/2025 &#183; Lagoa &#183; 60&#215;45 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="cam-02.jpg" alt=""></div><div class="work-caption"><strong>Morri de Amor</strong><span data-pt>Setembro/2025 &#183; Ipanema &#183; 45&#215;60 cm</span><span data-en>September/2025 &#183; Ipanema &#183; 45&#215;60 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="cam-03.jpg" alt=""></div><div class="work-caption"><strong>Morri de Saudade</strong><span data-pt>Novembro/2025 &#183; Leblon &#183; 45&#215;60 cm</span><span data-en>November/2025 &#183; Leblon &#183; 45&#215;60 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="cam-04.jpg" alt=""></div><div class="work-caption"><strong>N&#227;o Morri de Vontade</strong><span data-pt>Novembro/2025 &#183; Arpoador &#183; 45&#215;60 cm</span><span data-en>November/2025 &#183; Arpoador &#183; 45&#215;60 cm</span></div></div>
+      <div class="work-item"><div class="work-img"><img src="cam-05.jpg" alt=""></div><div class="work-caption"><strong>Eu Fiz Essa Foto Pra Voc&#234;</strong><span data-pt>Abril/2025 &#183; Arpoador &#183; 60&#215;45 cm</span><span data-en>April/2025 &#183; Arpoador &#183; 60&#215;45 cm</span></div></div>
     </div>
-    <button class="series-back" data-goto="series"><span data-pt>← Todas as séries</span><span data-en>← All series</span></button>
-    <footer><p>© 2026 Dani Justus · Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>↑ Início</span><span data-en>↑ Home</span></button></footer>
+    <button class="series-back" data-goto="series"><span data-pt>&#8592; Todas as s&#233;ries</span><span data-en>&#8592; All series</span></button>
+    <footer><p>&#169; 2026 Dani Justus &#183; Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>&#8593; In&#237;cio</span><span data-en>&#8593; Home</span></button></footer>
   </div>
 
-  <!-- SOBRE -->
   <div id="sobre-page" class="page-section">
     <div style="padding:0 80px 140px">
       <span class="section-eyebrow"><span data-pt>Sobre</span><span data-en>About</span></span>
@@ -303,45 +273,44 @@ span[data-en]{display:none}
         <div class="sobre-text">
           <h2>Daniela<br><em>Justus</em></h2>
           <div data-pt>
-            <p>Fotógrafa brasileira, baseada no Rio de Janeiro, com mais de duas décadas de atuação profissional.</p>
-            <p>Sua pesquisa mergulha nos processos analógicos e na investigação da interrupção do tempo. Seu trabalho nasce do gesto de fotografar sem pré-visualização, aceitando o destino da imagem que só se revela a posteriori.</p>
-            <p>Utilizando câmeras antigas, filmes vencidos, múltiplas exposições e processos experimentais, a artista incorpora o erro, o acaso e as instabilidades do material como partes indissociáveis da obra.</p>
-            <p>Na produção atual de Daniela, fotografar é o ato de desacelerar o tempo e aceitar, com todas as suas nuances e ruídos, aquilo que permanece.</p>
+            <p>Fot&#243;grafa brasileira, baseada no Rio de Janeiro, com mais de duas d&#233;cadas de atua&#231;&#227;o profissional.</p>
+            <p>Sua pesquisa mergulha nos processos anal&#243;gicos e na investiga&#231;&#227;o da interrup&#231;&#227;o do tempo. Seu trabalho nasce do gesto de fotografar sem pr&#233;-visualiza&#231;&#227;o, aceitando o destino da imagem que s&#243; se revela a posteriori.</p>
+            <p>Utilizando c&#226;meras antigas, filmes vencidos, m&#250;ltiplas exposi&#231;&#245;es e processos experimentais, a artista incorpora o erro, o acaso e as instabilidades do material como partes indissoci&#225;veis da obra.</p>
+            <p>Na produ&#231;&#227;o atual de Daniela, fotografar &#233; o ato de desacelerar o tempo e aceitar, com todas as suas nuances e ru&#237;dos, aquilo que permanece.</p>
           </div>
           <div data-en>
             <p>Brazilian photographer based in Rio de Janeiro, with over two decades of professional practice.</p>
-            <p>Her research delves into analog processes and the investigation of time's interruption. Her work is born from the gesture of photographing without pre-visualization, accepting the fate of the image that only reveals itself afterwards.</p>
+            <p>Her research delves into analog processes and the investigation of time&#8217;s interruption. Her work is born from the gesture of photographing without pre-visualization, accepting the fate of the image that only reveals itself afterwards.</p>
             <p>Using vintage cameras, expired films, multiple exposures, and experimental processes, the artist incorporates error, chance, and material instabilities as inseparable parts of the work.</p>
-            <p>In Daniela's current practice, to photograph is the act of slowing down time and accepting — with all its nuances and noise — what remains.</p>
+            <p>In Daniela&#8217;s current practice, to photograph is the act of slowing down time and accepting &#8212; with all its nuances and noise &#8212; what remains.</p>
           </div>
           <div class="expo">
-            <h3><span data-pt>Exposições</span><span data-en>Exhibitions</span></h3>
+            <h3><span data-pt>Exposi&#231;&#245;es</span><span data-en>Exhibitions</span></h3>
             <ul>
-              <li><span>2026</span><span><span data-pt>Eu fiz essa foto pra você — solo, Restaurante Brota, Botafogo</span><span data-en>Eu fiz essa foto pra você — solo, Restaurante Brota, Botafogo</span></span></li>
-              <li><span>2025</span><span>Encontros de Outono, Casa70/Instituto Brando — Rio de Janeiro</span></li>
-              <li><span>2007</span><span>Prêmio Hercule Florence, Casa França-Brasil — Rio de Janeiro</span></li>
-              <li><span>2006</span><span>Os Trabalhos, Ateliê da Imagem — Rio de Janeiro</span></li>
-              <li><span>2005</span><span>Terceira Margem, Ateliê da Imagem — Rio de Janeiro</span></li>
-              <li><span>2005</span><span>Desclick, Ateliê da Imagem — Rio de Janeiro</span></li>
+              <li><span>2026</span><span>Eu fiz essa foto pra voc&#234; &#8212; solo, Restaurante Brota, Botafogo</span></li>
+              <li><span>2025</span><span>Encontros de Outono, Casa70/Instituto Brando &#8212; Rio de Janeiro</span></li>
+              <li><span>2007</span><span>Pr&#234;mio Hercule Florence, Casa Fran&#231;a-Brasil &#8212; Rio de Janeiro</span></li>
+              <li><span>2006</span><span>Os Trabalhos, Atel&#234; da Imagem &#8212; Rio de Janeiro</span></li>
+              <li><span>2005</span><span>Terceira Margem, Atel&#234; da Imagem &#8212; Rio de Janeiro</span></li>
+              <li><span>2005</span><span>Desclick, Atel&#234; da Imagem &#8212; Rio de Janeiro</span></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <footer style="margin-top:0"><p>© 2026 Dani Justus · Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>↑ Início</span><span data-en>↑ Home</span></button></footer>
+    <footer style="margin-top:0"><p>&#169; 2026 Dani Justus &#183; Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>&#8593; In&#237;cio</span><span data-en>&#8593; Home</span></button></footer>
   </div>
 
-  <!-- CONTATO -->
   <div id="contato-page" class="page-section">
     <div style="padding:0 80px 140px">
       <span class="section-eyebrow"><span data-pt>Contato</span><span data-en>Contact</span></span>
       <div class="contato-body">
-        <h2><span data-pt>Vamos<br><em>conversar</em></span><span data-en>Let's<br><em>talk</em></span></h2>
-        <p><span data-pt>Para aquisição de obras, encomendas, exposições ou qualquer outra questão, entre em contato.</span><span data-en>For acquisitions, commissions, exhibitions or any other inquiry, get in touch.</span></p>
+        <h2><span data-pt>Vamos<br><em>conversar</em></span><span data-en>Let&#8217;s<br><em>talk</em></span></h2>
+        <p><span data-pt>Para aquisi&#231;&#227;o de obras, encomendas, exposi&#231;&#245;es ou qualquer outra quest&#227;o, entre em contato.</span><span data-en>For acquisitions, commissions, exhibitions or any other inquiry, get in touch.</span></p>
         <div class="contato-links">
           <a class="contato-ig" href="https://www.instagram.com/danijustus.art/" target="_blank" rel="noopener">@danijustus.art</a>
           <div class="contato-meta">
-            <a href="/cdn-cgi/l/email-protection#0266636c6b676e632c68777176777142656f636b6e2c616d6f"><span class="__cf_email__" data-cfemail="89ede8e7e0ece5e8a7e3fcfafdfcfac9eee4e8e0e5a7eae6e4">[email&#160;protected]</span></a>
+            <span id="email-contact">daniela.justus&#64;gmail.com</span>
             <span>+55 21 99873-3496</span>
           </div>
           <a class="cta-wa" href="https://wa.me/5521998733496" target="_blank" rel="noopener">
@@ -351,12 +320,11 @@ span[data-en]{display:none}
         </div>
       </div>
     </div>
-    <footer style="margin-top:0"><p>© 2026 Dani Justus · Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>↑ Início</span><span data-en>↑ Home</span></button></footer>
+    <footer style="margin-top:0"><p>&#169; 2026 Dani Justus &#183; Rio de Janeiro</p><button class="footer-home" data-goto-home><span data-pt>&#8593; In&#237;cio</span><span data-en>&#8593; Home</span></button></footer>
   </div>
 
-</div><!-- #page -->
+</div>
 
-<!-- LIGHTBOX -->
 <div id="lb">
   <span id="lb-series"></span>
   <button id="lb-close"><span data-pt>Fechar</span><span data-en>Close</span></button>
@@ -367,163 +335,80 @@ span[data-en]{display:none}
   <span id="lb-count"></span>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-var SERIES = {
-  mutante: {
-    pt:'Mutante', en:'Mutant',
-    photos:[
-      {src:'mut-01.jpg',title:'Onda',pt:'Dezembro/2023 · Leblon',en:'December/2023 · Leblon'},
-      {src:'mut-02.jpg',title:'Dois Irmãos',pt:'Dezembro/2023 · Leblon',en:'December/2023 · Leblon'},
-      {src:'mut-03.jpg',title:'Roda Mundo',pt:'Dezembro/2023 · Ipanema',en:'December/2023 · Ipanema'},
-      {src:'mut-04.jpg',title:'Mundo Invertido',pt:'Outubro/2024 · Leblon',en:'October/2024 · Leblon'},
-      {src:'mut-05.jpg',title:'Caixote',pt:'Dezembro/2023 · Leblon',en:'December/2023 · Leblon'},
-      {src:'mut-06.jpg',title:'Homenagem a Debret',pt:'Abril/2024 · Jardim Botânico',en:'April/2024 · Jardim Botânico'},
-      {src:'mut-07.jpg',title:'Pindorama',pt:'Setembro/2025 · Jardim Botânico',en:'September/2025 · Jardim Botânico'},
-      {src:'mut-08.jpg',title:'Balada Baiana',pt:'Janeiro/2025 · Bahia',en:'January/2025 · Bahia'},
-      {src:'mut-09a.jpg',title:'Díptico — Domingo I',pt:'Dezembro/2023 · Ipanema',en:'December/2023 · Ipanema'},
-      {src:'mut-09b.jpg',title:'Díptico — Domingo II',pt:'Dezembro/2023 · Ipanema',en:'December/2023 · Ipanema'},
-      {src:'mut-10.jpg',title:'Testemunhas Cariocas',pt:'Outubro/2024 · Parque Lage',en:'October/2024 · Parque Lage'},
-      {src:'mut-11.jpg',title:'O que fica na memória?',pt:'Outubro/2025 · Jardim Botânico',en:'October/2025 · Jardim Botânico'}
-    ]
-  },
-  sonorio: {
-    pt:'Só no Rio', en:'Only in Rio',
-    photos:[
-      {src:'snr-01.jpg',title:'Sem título',pt:'Novembro/2025 · Ipanema',en:'November/2025 · Ipanema'},
-      {src:'snr-02.jpg',title:'Sem título',pt:'Novembro/2025 · Ipanema',en:'November/2025 · Ipanema'},
-      {src:'snr-03.jpg',title:'Ipanema',pt:'Novembro/2025 · Ipanema',en:'November/2025 · Ipanema'},
-      {src:'snr-04.jpg',title:'A melhor praia do ano',pt:'Dezembro/2025 · Arpoador',en:'December/2025 · Arpoador'},
-      {src:'snr-05.jpg',title:'Olhos nos olhos',pt:'Novembro/2025 · Ipanema',en:'November/2025 · Ipanema'},
-      {src:'snr-06.jpg',title:'Sem título',pt:'Fevereiro/2026 · Ipanema',en:'February/2026 · Ipanema'},
-      {src:'snr-07.jpg',title:'Sem título',pt:'Fevereiro/2026 · Ipanema',en:'February/2026 · Ipanema'},
-      {src:'snr-08.jpg',title:'Ao mar o que é do mar',pt:'Fevereiro/2026 · Ipanema',en:'February/2026 · Ipanema'},
-      {src:'snr-09.jpg',title:'Ipanema, 1970',pt:'Fevereiro/2026 · Ipanema',en:'February/2026 · Ipanema'},
-      {src:'snr-10.jpg',title:'Sem título',pt:'Fevereiro/2026 · Ipanema',en:'February/2026 · Ipanema'},
-      {src:'snr-11.jpg',title:'Sem título',pt:'Fevereiro/2026 · Ipanema',en:'February/2026 · Ipanema'}
-    ]
-  },
-  cartasoamar: {
-    pt:'Cartas ao Mar', en:'Letters to the Sea',
-    photos:[
-      {src:'cam-01.jpg',title:'Como faz para voltar no tempo?',pt:'Março/2025 · Lagoa',en:'March/2025 · Lagoa'},
-      {src:'cam-02.jpg',title:'Morri de Amor',pt:'Setembro/2025 · Ipanema',en:'September/2025 · Ipanema'},
-      {src:'cam-03.jpg',title:'Morri de Saudade',pt:'Novembro/2025 · Leblon',en:'November/2025 · Leblon'},
-      {src:'cam-04.jpg',title:'Não Morri de Vontade',pt:'Novembro/2025 · Arpoador',en:'November/2025 · Arpoador'},
-      {src:'cam-05.jpg',title:'Eu Fiz Essa Foto Pra Você',pt:'Abril/2025 · Arpoador',en:'April/2025 · Arpoador'}
-    ]
-  }
-};
+<script>
+var SERIES={mutante:{pt:'Mutante',en:'Mutant',photos:[{src:'mut-01.jpg',title:'Onda',pt:'Dezembro/2023 - Leblon',en:'December/2023 - Leblon'},{src:'mut-02.jpg',title:'Dois Irmãos',pt:'Dezembro/2023 - Leblon',en:'December/2023 - Leblon'},{src:'mut-03.jpg',title:'Roda Mundo',pt:'Dezembro/2023 - Ipanema',en:'December/2023 - Ipanema'},{src:'mut-04.jpg',title:'Mundo Invertido',pt:'Outubro/2024 - Leblon',en:'October/2024 - Leblon'},{src:'mut-05.jpg',title:'Caixote',pt:'Dezembro/2023 - Leblon',en:'December/2023 - Leblon'},{src:'mut-06.jpg',title:'Homenagem a Debret',pt:'Abril/2024 - Jardim Botânico',en:'April/2024 - Jardim Botânico'},{src:'mut-07.jpg',title:'Pindorama',pt:'Setembro/2025 - Jardim Botânico',en:'September/2025 - Jardim Botânico'},{src:'mut-08.jpg',title:'Balada Baiana',pt:'Janeiro/2025 - Bahia',en:'January/2025 - Bahia'},{src:'mut-09a.jpg',title:'Díptico - Domingo I',pt:'Dezembro/2023 - Ipanema',en:'December/2023 - Ipanema'},{src:'mut-09b.jpg',title:'Díptico - Domingo II',pt:'Dezembro/2023 - Ipanema',en:'December/2023 - Ipanema'},{src:'mut-10.jpg',title:'Testemunhas Cariocas',pt:'Outubro/2024 - Parque Lage',en:'October/2024 - Parque Lage'},{src:'mut-11.jpg',title:'O que fica na memória?',pt:'Outubro/2025 - Jardim Botânico',en:'October/2025 - Jardim Botânico'}]},sonorio:{pt:'Só no Rio',en:'Only in Rio',photos:[{src:'snr-01.jpg',title:'Sem título',pt:'Novembro/2025 - Ipanema',en:'November/2025 - Ipanema'},{src:'snr-02.jpg',title:'Sem título',pt:'Novembro/2025 - Ipanema',en:'November/2025 - Ipanema'},{src:'snr-03.jpg',title:'Ipanema',pt:'Novembro/2025 - Ipanema',en:'November/2025 - Ipanema'},{src:'snr-04.jpg',title:'A melhor praia do ano',pt:'Dezembro/2025 - Arpoador',en:'December/2025 - Arpoador'},{src:'snr-05.jpg',title:'Olhos nos olhos',pt:'Novembro/2025 - Ipanema',en:'November/2025 - Ipanema'},{src:'snr-06.jpg',title:'Sem título',pt:'Fevereiro/2026 - Ipanema',en:'February/2026 - Ipanema'},{src:'snr-07.jpg',title:'Sem título',pt:'Fevereiro/2026 - Ipanema',en:'February/2026 - Ipanema'},{src:'snr-08.jpg',title:'Ao mar o que é do mar',pt:'Fevereiro/2026 - Ipanema',en:'February/2026 - Ipanema'},{src:'snr-09.jpg',title:'Ipanema, 1970',pt:'Fevereiro/2026 - Ipanema',en:'February/2026 - Ipanema'},{src:'snr-10.jpg',title:'Sem título',pt:'Fevereiro/2026 - Ipanema',en:'February/2026 - Ipanema'},{src:'snr-11.jpg',title:'Sem título',pt:'Fevereiro/2026 - Ipanema',en:'February/2026 - Ipanema'}]},cartasoamar:{pt:'Cartas ao Mar',en:'Letters to the Sea',photos:[{src:'cam-01.jpg',title:'Como faz para voltar no tempo?',pt:'Março/2025 - Lagoa',en:'March/2025 - Lagoa'},{src:'cam-02.jpg',title:'Morri de Amor',pt:'Setembro/2025 - Ipanema',en:'September/2025 - Ipanema'},{src:'cam-03.jpg',title:'Morri de Saudade',pt:'Novembro/2025 - Leblon',en:'November/2025 - Leblon'},{src:'cam-04.jpg',title:'Não Morri de Vontade',pt:'Novembro/2025 - Arpoador',en:'November/2025 - Arpoador'},{src:'cam-05.jpg',title:'Eu Fiz Essa Foto Pra Você',pt:'Abril/2025 - Arpoador',en:'April/2025 - Arpoador'}]}};
 
-// LANGUAGE
-document.getElementById('btn-pt').addEventListener('click', function(){ setLang('pt'); });
-document.getElementById('btn-en').addEventListener('click', function(){ setLang('en'); });
-function setLang(lang) {
-  document.body.classList.toggle('en', lang === 'en');
-  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-}
+document.getElementById('btn-pt').onclick=function(){setLang('pt')};
+document.getElementById('btn-en').onclick=function(){setLang('en')};
+function setLang(l){document.body.classList.toggle('en',l==='en');document.getElementById('btn-pt').classList.toggle('active',l==='pt');document.getElementById('btn-en').classList.toggle('active',l==='en')}
 
-// HOME PHOTO
-var homeImg = document.getElementById('home-img');
-homeImg.addEventListener('load', function(){ this.classList.add('loaded'); });
-if (homeImg.complete) homeImg.classList.add('loaded');
+var homeImg=document.getElementById('home-img');
+if(homeImg.complete)homeImg.classList.add('loaded');
+else homeImg.onload=function(){this.classList.add('loaded')};
+document.getElementById('home-photo').onclick=function(){openPage('series')};
 
-// Click on home photo goes to series
-document.getElementById('home-photo').addEventListener('click', function(){
-  openPage('series');
-});
-
-// NAVIGATION
-function goHome() {
+function goHome(){
   document.getElementById('home-photo').classList.remove('hidden');
-  document.getElementById('home-hint').style.display = '';
-  document.getElementById('page').style.display = 'none';
-  document.body.style.overflow = 'hidden';
-  document.body.style.background = '#000';
-  document.querySelectorAll('.page-section').forEach(function(s){ s.style.display = 'none'; });
+  document.getElementById('home-hint').style.display='';
+  document.getElementById('page').style.display='none';
+  document.body.style.overflow='hidden';
+  document.querySelectorAll('.page-section').forEach(function(s){s.style.display='none'});
   window.scrollTo(0,0);
 }
 
-function openPage(name) {
+function openPage(name){
   document.getElementById('home-photo').classList.add('hidden');
-  document.getElementById('home-hint').style.display = 'none';
-  document.getElementById('page').style.display = 'block';
-  document.body.style.overflow = '';
-  document.body.style.background = 'var(--bg)';
-  document.querySelectorAll('.page-section').forEach(function(s){ s.style.display = 'none'; });
-  var target = document.getElementById(name + '-page');
-  if (target) { target.style.display = 'block'; }
+  document.getElementById('home-hint').style.display='none';
+  document.getElementById('page').style.display='block';
+  document.body.style.overflow='';
+  document.querySelectorAll('.page-section').forEach(function(s){s.style.display='none'});
+  var t=document.getElementById(name+'-page');
+  if(t)t.style.display='block';
   window.scrollTo(0,0);
 }
 
-// nav buttons
-document.getElementById('btn-home').addEventListener('click', goHome);
-document.getElementById('btn-series').addEventListener('click', function(){ openPage('series'); });
-document.getElementById('btn-sobre').addEventListener('click', function(){ openPage('sobre'); });
-document.getElementById('btn-contato').addEventListener('click', function(){ openPage('contato'); });
+document.getElementById('btn-home').onclick=goHome;
+document.getElementById('btn-series').onclick=function(){openPage('series')};
+document.getElementById('btn-sobre').onclick=function(){openPage('sobre')};
+document.getElementById('btn-contato').onclick=function(){openPage('contato')};
 
-// series cards
 document.querySelectorAll('[data-goto]').forEach(function(el){
-  el.addEventListener('click', function(){ openPage(this.getAttribute('data-goto')); });
+  el.onclick=function(){openPage(this.getAttribute('data-goto'))};
 });
-
-// back buttons & footer home
 document.querySelectorAll('[data-goto-home]').forEach(function(el){
-  el.addEventListener('click', goHome);
+  el.onclick=goHome;
 });
 
-// LIGHTBOX
-var lb = document.getElementById('lb');
-var lbImg = document.getElementById('lb-img');
-var lbSeries = null, lbIdx = 0;
-
-function lbOpen(seriesKey, idx) {
-  lbSeries = seriesKey;
-  lbIdx = idx;
-  lbShow();
-  lb.classList.add('open');
-  document.body.style.overflow = 'hidden';
+var lb=document.getElementById('lb');
+var lbSeries=null,lbIdx=0;
+function lbOpen(s,i){lbSeries=s;lbIdx=i;lbShow();lb.classList.add('open');document.body.style.overflow='hidden'}
+function lbShow(){
+  var s=SERIES[lbSeries],p=s.photos[lbIdx],en=document.body.classList.contains('en');
+  var img=document.getElementById('lb-img');
+  img.classList.remove('ready');img.src=p.src;img.onload=function(){img.classList.add('ready')};
+  document.getElementById('lb-series').textContent=en?s.en:s.pt;
+  document.getElementById('lb-title').textContent=p.title;
+  document.getElementById('lb-meta').textContent=en?p.en:p.pt;
+  document.getElementById('lb-count').textContent=(lbIdx+1)+' / '+s.photos.length;
 }
+function lbClose(){lb.classList.remove('open');document.body.style.overflow=''}
+document.getElementById('lb-close').onclick=lbClose;
+document.getElementById('lb-prev').onclick=function(){lbIdx=(lbIdx-1+SERIES[lbSeries].photos.length)%SERIES[lbSeries].photos.length;lbShow()};
+document.getElementById('lb-next').onclick=function(){lbIdx=(lbIdx+1)%SERIES[lbSeries].photos.length;lbShow()};
+document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')lbClose();if(e.key==='ArrowLeft')document.getElementById('lb-prev').click();if(e.key==='ArrowRight')document.getElementById('lb-next').click()});
 
-function lbShow() {
-  var s = SERIES[lbSeries];
-  var p = s.photos[lbIdx];
-  var isEn = document.body.classList.contains('en');
-  lbImg.classList.remove('ready');
-  lbImg.src = p.src;
-  lbImg.onload = function(){ lbImg.classList.add('ready'); };
-  document.getElementById('lb-series').textContent = isEn ? s.en : s.pt;
-  document.getElementById('lb-title').textContent = p.title;
-  document.getElementById('lb-meta').textContent = isEn ? p.en : p.pt;
-  document.getElementById('lb-count').textContent = (lbIdx+1) + ' / ' + s.photos.length;
-}
-
-function lbClose() {
-  lb.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('lb-close').addEventListener('click', lbClose);
-document.getElementById('lb-prev').addEventListener('click', function(){
-  var len = SERIES[lbSeries].photos.length;
-  lbIdx = (lbIdx - 1 + len) % len;
-  lbShow();
-});
-document.getElementById('lb-next').addEventListener('click', function(){
-  lbIdx = (lbIdx + 1) % SERIES[lbSeries].photos.length;
-  lbShow();
-});
-document.addEventListener('keydown', function(e){
-  if (!lb.classList.contains('open')) return;
-  if (e.key === 'Escape') lbClose();
-  if (e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
-  if (e.key === 'ArrowRight') document.getElementById('lb-next').click();
-});
-
-// work image click → lightbox
 document.querySelectorAll('.work-item').forEach(function(item){
-  item.addEventListener('click', function(){
-    var page = item.closest('.page-section');
-    if (!page) return;
-    var pageId = page.id.replace('-page','');
-    var imgs = Arr
+  item.onclick=function(){
+    var pg=item.closest('.page-section');
+    if(!pg)return;
+    var key=pg.id.replace('-page','');
+    var imgs=Array.from(pg.querySelectorAll('.work-img img'));
+    var idx=imgs.indexOf(item.querySelector('.work-img img'));
+    lbOpen(key,Math.max(0,idx));
+  };
+});
+
+goHome();
+</script>
+</body>
+</html>
