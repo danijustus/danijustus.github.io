@@ -385,7 +385,7 @@ span[data-en]{display:none}
         <h2><span data-pt>Vamos<br><em>conversar</em></span><span data-en>Let's<br><em>talk</em></span></h2>
         <p><span data-pt>Para aquisição de obras, encomendas, exposições ou qualquer outra questão, entre em contato.</span><span data-en>For acquisitions, commissions, exhibitions or any other inquiry, get in touch.</span></p>
         <div class="contato-links">
-          <a class="link-ig" href="https://www.instagram.com/danijustus.art/" onclick="window.open('https://www.instagram.com/danijustus.art/','_blank','noopener,noreferrer');return false;" style="font-family:var(--serif);font-style:italic;font-size:clamp(32px,4vw,56px);color:var(--text);border-bottom:1px solid rgba(28,27,25,0.18);padding-bottom:6px;letter-spacing:0.01em;text-decoration:none;display:inline-block;cursor:pointer">@danijustus.art</a>
+          <a class="link-ig" href="https://www.instagram.com/danijustus.art/" target="_blank" rel="noopener noreferrer" style="font-family:var(--serif);font-style:italic;font-size:clamp(32px,4vw,56px);color:var(--text);border-bottom:1px solid rgba(28,27,25,0.18);padding-bottom:6px;letter-spacing:0.01em;text-decoration:none;display:inline-block;cursor:pointer">@danijustus.art</a>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
             <a href="mailto:daniela.justus@gmail.com" style="font-size:15px;color:var(--muted);text-decoration:none;font-family:var(--sans);letter-spacing:0.04em">daniela.justus@gmail.com</a>
             <span style="font-size:15px;color:var(--muted);font-family:var(--sans);letter-spacing:0.04em">+55 21 99873-3496</span>
@@ -617,13 +617,17 @@ document.querySelectorAll('.work-img').forEach(function(div) {
     var section = div.closest('.page-section');
     if (!section) return;
     var key = section.id.replace('-page','');
+    if (!SERIES[key]) return;
     var works = section.querySelectorAll('.work-img');
     var idx = Array.prototype.indexOf.call(works, div);
     lbOpen(key, idx);
   });
 });
 
-// touch swipe on slideshow
+// Prevent external links from bubbling to page handlers
+document.querySelectorAll('a[target="_blank"], a[href^="mailto"], a[href^="https://wa.me"]').forEach(function(a) {
+  a.addEventListener('click', function(e) { e.stopPropagation(); });
+});
 var tx = null;
 document.getElementById('slideshow').addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, {passive:true});
 document.getElementById('slideshow').addEventListener('touchend', function(e) {
