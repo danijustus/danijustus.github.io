@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dani Justus — Fotografia Analógica</title>
+<meta name="description" content="Fotografia analógica, exposições e loja. Dani Justus.">
+
+<!-- Preview ao compartilhar o link -->
+<meta property="og:title" content="Dani Justus — Fotografia Analógica">
+<meta property="og:description" content="Fotografia analógica, exposições e loja.">
+<meta property="og:image" content="imagens/capa.jpg">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="imagens/perfil.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --papel:#F4F1EC;
+    --papel-card:#FFFFFF;
+    --tinta:#1C1A17;
+    --tinta-suave:#6B6459;
+    --linha:#E2DCD2;
+    --destaque:#8A7A66;
+    --raio:14px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  body{
+    background:var(--papel);
+    color:var(--tinta);
+    font-family:'Jost',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    padding:0 20px 64px;
+    display:flex;
+    justify-content:center;
+  }
+
+  .pagina{width:100%;max-width:520px;}
+
+  /* ---------- TOPO ---------- */
+  header{text-align:center;padding:56px 0 8px;}
+
+  .retrato{
+    width:104px;height:104px;
+    border-radius:50%;
+    object-fit:cover;
+    margin:0 auto 22px;
+    display:block;
+    background:var(--linha);
+    filter:grayscale(20%);
+  }
+
+  h1{
+    font-family:'Playfair Display',Georgia,serif;
+    font-weight:400;
+    font-size:2rem;
+    letter-spacing:.01em;
+    line-height:1.15;
+  }
+
+  .bio{
+    font-size:.95rem;
+    line-height:1.65;
+    color:var(--tinta-suave);
+    margin:14px auto 0;
+    max-width:36ch;
+  }
+
+  .bio em{
+    font-family:'Playfair Display',Georgia,serif;
+    font-style:italic;
+    color:var(--tinta);
+  }
+
+  /* ---------- CONTATO ---------- */
+  .contato{
+    display:flex;
+    justify-content:center;
+    gap:26px;
+    margin:26px 0 4px;
+  }
+
+  .contato a{
+    color:var(--tinta);
+    opacity:.75;
+    transition:opacity .2s ease,transform .2s ease;
+    display:flex;
+  }
+
+  .contato a:hover{opacity:1;transform:translateY(-2px);}
+  .contato svg{width:23px;height:23px;}
+
+  /* ---------- SEÇÕES ---------- */
+  .secao{margin-top:42px;}
+
+  .secao h2{
+    font-family:'Jost',sans-serif;
+    font-weight:500;
+    font-size:.72rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--destaque);
+    text-align:center;
+    margin-bottom:16px;
+  }
+
+  /* ---------- CARDS ---------- */
+  .link{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    background:var(--papel-card);
+    border:1px solid var(--linha);
+    border-radius:var(--raio);
+    padding:12px;
+    margin-bottom:12px;
+    text-decoration:none;
+    color:var(--tinta);
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+  }
+
+  .link:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px rgba(28,26,23,.09);
+    border-color:#CFC6B8;
+  }
+
+  .link img{
+    width:68px;height:68px;
+    flex-shrink:0;
+    object-fit:cover;
+    border-radius:8px;
+    background:var(--linha);
+  }
+
+  .txt{flex:1;min-width:0;}
+
+  .txt strong{
+    display:block;
+    font-family:'Playfair Display',Georgia,serif;
+    font-weight:400;
+    font-size:1.06rem;
+    line-height:1.3;
+  }
+
+  .txt span{
+    display:block;
+    font-size:.8rem;
+    color:var(--tinta-suave);
+    margin-top:4px;
+    line-height:1.45;
+  }
+
+  .seta{
+    flex-shrink:0;
+    color:var(--tinta-suave);
+    opacity:.5;
+    margin-right:4px;
+  }
+
+  /* ---------- RODAPÉ ---------- */
+  footer{
+    text-align:center;
+    margin-top:52px;
+    font-size:.72rem;
+    letter-spacing:.08em;
+    color:var(--tinta-suave);
+    opacity:.7;
+  }
+
+  @media (max-width:400px){
+    h1{font-size:1.72rem;}
+    .link img{width:60px;height:60px;}
+  }
+</style>
+</head>
+
+<body>
+<main class="pagina">
+
+  <header>
+    <img class="retrato" src="imagens/perfil.jpg" alt="Dani Justus">
+
+    <h1>Dani Justus</h1>
+
+    <p class="bio">
+      Fotografia analógica — Rio de Janeiro<br>
+      <em>Exposições, catálogos e obras originais</em>
+    </p>
+
+    <nav class="contato">
+      <a href="https://www.instagram.com/danijustus.art/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <a href="https://wa.me/5521998733496" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.4 8.4 0 0 1-11.9 7.6L3 21l1.9-6A8.4 8.4 0 1 1 21 11.5z"/>
+          <path d="M8.6 9.2c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .6.4l.7 1.6c.1.2 0 .4-.1.5l-.4.5c-.1.2-.2.3 0 .6a6 6 0 0 0 2.7 2.3c.3.1.4 0 .5-.1l.6-.7c.2-.2.3-.2.5-.1l1.6.8c.2.1.3.2.3.3v.5a1.7 1.7 0 0 1-1.6 1.2 7 7 0 0 1-4.5-2.3 7.6 7.6 0 0 1-2.1-3.9 2.6 2.6 0 0 1 .1-1.1z" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+    </nav>
+  </header>
+
+  <!-- ================= LOJA ================= -->
+  <section class="secao">
+    <h2>Loja</h2>
+
+    <a class="link" href="https://loja.danijustus.art/pages/cartasaomar" target="_blank" rel="noopener">
+      <img src="imagens/loja.jpg" alt="">
+      <div class="txt">
+        <strong>Morri de Amor, Morri de Saudade,<br>Não Morri de Vontade</strong>
+        <span>Parceria Dani Justus + Casa Proeza</span>
+      </div>
+      <svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
+  <!-- ================= PORTFÓLIO ================= -->
+  <section class="secao">
+    <h2>Portfólio</h2>
+
+    <a class="link" href="https://danijustus.art" target="_blank" rel="noopener">
+      <img src="imagens/portfolio.jpg" alt="">
+      <div class="txt">
+        <strong>Site Dani Justus</strong>
+        <span>Trabalhos, séries e projetos</span>
+      </div>
+      <svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
+  <!-- ================= CATÁLOGOS ================= -->
+  <section class="secao">
+    <h2>Catálogos</h2>
+
+    <a class="link" href="https://danijustus.art/catalogo/" target="_blank" rel="noopener">
+      <img src="imagens/catalogo.jpg" alt="">
+      <div class="txt">
+        <strong>Eu Fiz Essa Foto Pra Você</strong>
+        <span>Catálogo da exposição</span>
+      </div>
+      <svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
+  <!-- ================= EDIÇÕES CORPORATIVAS ================= -->
+  <section class="secao">
+    <h2>Edições Corporativas</h2>
+
+    <a class="link" href="https://www.danijustus.com.br/janelas-para-o-rio" target="_blank" rel="noopener">
+      <img src="imagens/janelas.jpg" alt="">
+      <div class="txt">
+        <strong>Janelas para o Rio</strong>
+        <span>Edições e projetos sob encomenda</span>
+      </div>
+      <svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
+  <footer>© Dani Justus</footer>
+
+</main>
+</body>
+</html>
